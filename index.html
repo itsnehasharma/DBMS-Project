@@ -14,22 +14,71 @@
 
         <div class="homepage-header">
             <h1>Trend Categories</h1>
-            
         </div>
 
-        <div class="profile"> <img class="profile-image" src="account.svg" alt=""></div>
-        
-        <div class="category-card age-group">
-            <h2>Age Group Trends</h2>
+        <div class="profile">
+                <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Settings</button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <a href="login.html">Log Out</a>
+                          <!-- <a href="#">Link 2</a>
+                          <a href="#">Link 3</a> -->
+                        </div>
+                      </div>
+            <!-- <img class="profile-image" src="account.svg" alt=""> -->
         </div>
-        
-        <div class="category-card weather"><h2>Weather Trends</h2></div>
-        <div class="category-card vehicle"><h2>Vehicle Trends</h2></div>
-        <div class="category-card time"><h2>Time Period Trends</h2></div>
-        <div class="category-card road-conditions"><h2>Road Conditions</h2></div>
-       
+
+        <div class="category-card age-group">
+
+            <a href="age-group-trends.html">
+                <h2>Age Group Trends</h2>
+            </a>
+
+        </div>
+
+        <div class="category-card weather">
+
+            <h2>Weather Trends</h2>
+        </div>
+        <div class="category-card vehicle">
+            <h2>Vehicle Trends</h2>
+        </div>
+        <div class="category-card time">
+
+            <a href="time-periods.html">
+                <h2>Time Period Trends</h2>
+            </a>
+
+        </div>
+        <div class="category-card road-conditions">
+            <h2>Road Conditions</h2>
+        </div>
+
 
     </div>
 </body>
 
+<script>
+
+
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 </html>

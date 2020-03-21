@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="styles.css">
+        <title>Age Group Trends</title>
+    </head>
+</head>
+
+<body class="trends-page">
+
+    <div class="trends-page-grid">
+
+        <div class="back" onclick="goBack()">
+            <p>Back</p>
+        </div>
+
+        <div class="trends-page-header">
+            <h1>Age Group Trends</h1>
+        </div>
+
+        <div class="selector-box">
+            <p>Age Group 1</p>
+            <select id="age-group-1">
+                <option value="volvo">Option 1</option>
+                <option value="saab">Option 2</option>
+                <option value="mercedes">Option 3</option>
+                <option value="audi">Option 4</option>
+            </select>
+        </div>
+
+        <div class="selector-box">
+            <p>Age Group 2</p>
+            <select id="age-group-2">
+                <option value="volvo">Option 1</option>
+                <option value="saab">Option 2</option>
+                <option value="mercedes">Option 3</option>
+                <option value="audi">Option 4</option>
+            </select>
+        </div>
+
+        <div class="selector-box">
+            <button class="enter-button">Generate Results</button>
+        </div>
+
+        <div class="graph">
+            <h2>insert graph here</h2>
+        </div>
+    </div>
+</body>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</html>
