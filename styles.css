@@ -1,0 +1,149 @@
+.login-page{
+    background-color: #31A4B4;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    font-weight: 300;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(200px, auto);
+}
+
+.login-box{
+    grid-column: 3/5;
+    grid-row: 2;
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 7px;
+}
+
+.login-box > p{
+    font-size: 20px;
+    /* padding: 5px; */
+}
+
+.login-text-box{
+    border: 1px solid #C4C4C4;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.enter-button{
+    background-color: #3532D7;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 8px;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    cursor: pointer;
+}
+
+.enter-button:hover{
+    background-color: #22208a;
+}
+h1{
+    font-weight: 400;
+    padding: 15px;
+}
+
+h2{
+    font-weight: 400;
+    padding: 15px;
+}
+
+
+.click-here{
+    font-size: 16px;
+    color: #3532D7;
+}
+
+/* HOMEPAGE */
+
+.homepage{
+    background-color: #f2f2f2;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    font-weight: 300;
+}
+
+.homepage-grid{
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    grid-gap: 30px;
+    grid-auto-rows: minmax(100px, auto);
+    
+}
+
+.homepage-header{
+    grid-row: 1;
+    grid-column: 1/9;
+    text-align: center;
+    background-color: #22208a;
+    margin-top: 0;
+    color: #FFFFFF;
+    z-index: -1;
+}
+
+.profile{
+    /* z-index: 2; */
+    grid-row: 1;
+    grid-column: 8/9;
+    /* margin: auto; */
+    align-self: center;
+    justify-self: center;
+    width: 70%;
+    height: auto;
+}
+
+.category-card{
+    background: #3532D7;
+    text-align: center;
+    margin: auto;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: #ffffff;
+}
+
+
+.age-group{
+    
+    grid-row: 3;
+    grid-column: 3/5;
+}
+
+.weather{
+
+    grid-row: 3;
+    grid-column: 5/7;
+}
+
+.vehicle{
+
+    grid-row: 4;
+    grid-column: 2/4;
+
+}
+
+.time{
+
+    grid-row: 4;
+    grid-column: 4/6;
+
+}
+
+.road-conditions{
+
+    grid-row: 4;
+    grid-column: 6/8;
+
+}
+
+.profile-image{
+    width: 50%;
+    height: auto;
+    fill: #FFFFFF;
+    margin: auto;
+    
+}
