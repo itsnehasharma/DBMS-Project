@@ -16,27 +16,23 @@
 
     <div class="trends-page-grid">
 
-        <div class="back" onclick="goBack()">
-            <p>Back</p>
+        <div class="back" onclick="goHome()">
+            <p>Back To Home</p>
         </div>
 
         <div class="trends-page-header">
             <h1>Vehicle Trends</h1>
         </div>
 
-        <div class="query">
-            <p>Find Accident frequency for different vehicle types and vehicle age and a certain road surface, alignment, and
-                roadway configuration for a range of years</p>
-        </div>
-
-        <div class="query">
+        <div class="query" onclick="query1()">
             <p>Show a trend of the number of new vehicles that were a part of a collision in the same year as their manufacturing
                 over a period of x years.</p>
         </div>
 
-        <div class="query">
-            <p>Display a Mosaic or Mekko chart showing the number of collisions for each vehicle type over a period of months or
-                years</p>
+        <div class="query" onclick="query2()">
+            <p>Display a Mosaic or Mekko chart showing the number of collisions for each vehicle type over a period of months
+                or years
+            </p>
         </div>
 
 
@@ -45,9 +41,19 @@
 </body>
 
 <script>
-    function goBack() {
-        window.history.back();
+    function goHome() {
+        window.location.href = "index.html";
     }
+
+    function query1() {
+        window.location.href = "vehicles/vehicle-query-1.html";
+    }
+
+    function query2() {
+        window.location.href = "vehicles/vehicle-query-2.html";
+    }
+
+
 </script>
 
 </html>

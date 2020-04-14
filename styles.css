@@ -233,6 +233,47 @@ h2{
     grid-column: 2/3;
 }
 
+.nested{
+    grid-column: 2/6;
+    grid-row: 3/5;
+}
+
+.nested-graphs{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 10px;
+}
+
+.nested-choose-L{
+    grid-column: 1/2;
+    grid-row: 1;
+}
+
+.nested-choose-R{
+    grid-column: 3/4;
+    grid-row: 1;
+}
+
+.nested-graph-L{
+    grid-column: 1/3;
+    grid-row: 2;
+    border: 1px solid #22208a;
+}
+
+.nested-graph-R{
+    grid-column: 3/5;
+    grid-row: 2;
+    border: 1px solid #22208a;
+}
+
+.display-full{
+
+    border: 1px solid #22208a;
+    grid-column: 2/6;
+
+}
+
 .graph{
     grid-column: 4/6;
     grid-row: 2/4;
