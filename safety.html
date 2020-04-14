@@ -16,19 +16,19 @@
 
     <div class="trends-page-grid">
 
-        <div class="back" onclick="goBack()">
-            <p>Back</p>
+        <div class="back" onclick="goHome()">
+            <p>Back to Home</p>
         </div>
 
         <div class="trends-page-header">
             <h1>Safety Trends</h1>
         </div>
 
-        <div class="query">
+        <div class="query" onclick="query1()">
             <p>Find number of pedestrians hit for an astronomical twilight time with or without reflective clothing</p>
         </div>
 
-        <div class="query">
+        <div class="query" onclick="query2()">
             <p>Find the number of collisions occurring on weekends and weekdays when astronomical twilight is evening or night
                 over a range of year</p>
         </div>
@@ -37,9 +37,18 @@
 </body>
 
 <script>
-    function goBack() {
-        window.history.back();
-    }
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    
+        function query1(){
+            window.location.href = "safety/safety-query-1.html";
+        }
+    
+        function query2(){
+            window.location.href = "safety/safety-query-2.html";
+        }
+    
 </script>
 
 </html>

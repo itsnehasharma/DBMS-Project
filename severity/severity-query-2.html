@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="..\styles.css">
-        <title>People Trends</title>
+        <title>Severity Trends</title>
     </head>
 </head>
 
@@ -21,23 +21,20 @@
         </div>
 
         <div class="trends-page-header">
-            <h1>People Trends</h1>
+            <h1>Severity Trends</h1>
         </div>
 
-        <button onclick="done()" class="back-to-cat">People Queries</button>
+        <button onclick="done()" class="back-to-cat">Severity Queries</button>
 
 
         <div class="query-title">
-            <h1>Show a trend of the number of male and female drivers involved in collisions occurring on a particular road surface
-                in a particular weather condition over a period of months or years</h1>
+            <h1>Show a trend of the number of accidents showing each collision severity for a range of months or years.</h1>
         </div>
 
 
-        <!-- does this need to be in a form wrapper? -->
-
         <div class="selector-box">
 
-            <form method="POST">
+            <form method="post">
 
                 <label for="starting-month" class="selection-label">Starting Month: </label>
                 <select name="starting-month" id="starting-month" class="mySelect">
@@ -111,11 +108,13 @@
                     <option value="2014">2014</option>
                 </select>
 
-                <br>
-                <!-- is this what you need for the submit -->
-                <input type="submit" class="enter-button">
-            </form>
 
+
+                <br>
+                <input type="submit" class="enter-button">
+
+
+            </form>
         </div>
 
         <div class="display-graph">
@@ -136,7 +135,7 @@
 
     function done() {
 
-        window.location.href = "../people.html";
+        window.location.href = "../severity.html";
 
     }
 </script>

@@ -16,33 +16,38 @@
 
     <div class="trends-page-grid">
 
-        <div class="back" onclick="goBack()">
-            <p>Back</p>
+        <div class="back" onclick="goHome()">
+            <p>Back to Home</p>
         </div>
 
         <div class="trends-page-header">
             <h1>Severity Trends</h1>
         </div>
 
-        <div class="query">
-            <p>Calculate the ratio of fatalities to non-fatal injuries from (or just fatalities to accidents) accidents given
-                a current year/age group (user selects) This could give us more insight on the severity of accidents as time
-                goes on?
+        <div class="query" onclick="query1()">
+            <p>Calculate the ratio of fatalities to non-fatal injuries from accidents given a year and age group
             </p>
         </div>
 
-        <div class="query">
-            <p>Show a trend of the number of accidents showing each collision severity for a range of months or years. (line
-                graph)
+        <div class="query" onclick="query2()"> 
+            <p>Show a trend of the number of accidents showing each collision severity for a range of months or years. 
             </p>
         </div>
     </div>
 </body>
 
 <script>
-    function goBack() {
-        window.history.back();
-    }
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    
+        function query1(){
+            window.location.href = "severity/severity-query-1.html";
+        }
+    
+        function query2(){
+            window.location.href = "severity/severity-query-2.html";
+        }
 </script>
 
 </html>
