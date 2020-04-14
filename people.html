@@ -16,7 +16,7 @@
 
     <div class="trends-page-grid">
 
-        <div class="back" onclick="goBack()">
+        <div class="back" onclick="goHome()">
             <p>Back to Home</p>
         </div>
 
@@ -25,26 +25,28 @@
         </div>
 
 
-        <div class="query" onclick="toggle1()">
+        <div class="query" onclick="query1()">
             <p>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse weather
                 condition at certain road surface for a span of years</p>
         </div>
 
-        <div class="query" onclick="toggle2()">
+        <div class="query" onclick="query2()">
             <p>Show the number of injuries in different age groups over a certain period of time</p>
         </div>
 
-        <div class="query" onclick="toggle3()">
+        <div class="query" onclick="query3()">
             <p>Show a trend of the number of male and female drivers involved in collisions occurring on a particular road surface
                 in a particular weather condition over a period of months or years</p>
         </div>
 
-        <div id="query1">
+        <!-- <div id="query1">
            
             
             <button onclick="done()" class="enter-button">Back to Query Options</button>
 
-            <!-- does this need to be in a form wrapper? -->
+
+            <p>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse weather
+                    condition at certain road surface for a span of years</p>
 
             <label for="weather-cond" class="selection-label">Weather Condition:</label>
             <select name="weather-cond" id="weather-cond" class="mySelect">
@@ -110,19 +112,60 @@
                 <option value="16">2014</option>
             </select>
 
-            <!-- is this what you need for the submit -->
             <input type="submit" class="enter-button"> 
 
             
-        </div>
+        </div> -->
 
-        <div id="query2">this is my other query
-                <button onclick="done()">Back to Query Options</button>
-        </div>
+        <!-- <div id="query2">
+            <h2>Show the number of injuries in different age groups over a certain period of time</h2>
+            <label for="starting-year" class="selection-label">Starting Year: </label>
+            <select name="starting-year" id="starting-year" class="mySelect">
+                <option value="1">1999</option>
+                <option value="2">2000</option>
+                <option value="3">2001</option>
+                <option value="4">2002</option>
+                <option value="5">2003</option>
+                <option value="6">2004</option>
+                <option value="7">2005</option>
+                <option value="8">2006</option>
+                <option value="9">2007</option>
+                <option value="10">2008</option>
+                <option value="11">2009</option>
+                <option value="12">2010</option>
+                <option value="13">2011</option>
+                <option value="14">2012</option>
+                <option value="15">2013</option>
+                <option value="16">2014</option>
+            </select>
 
-        <div id="query3">this is my other query
+            <label for="ending-year" class="selection-label">Ending Year:</label>
+            <select name="ending-year" id="ending-year" class="mySelect">
+                <option value="1">1999</option>
+                <option value="2">2000</option>
+                <option value="3">2001</option>
+                <option value="4">2002</option>
+                <option value="5">2003</option>
+                <option value="6">2004</option>
+                <option value="7">2005</option>
+                <option value="8">2006</option>
+                <option value="9">2007</option>
+                <option value="10">2008</option>
+                <option value="11">2009</option>
+                <option value="12">2010</option>
+                <option value="13">2011</option>
+                <option value="14">2012</option>
+                <option value="15">2013</option>
+                <option value="16">2014</option>
+            </select>
                 <button onclick="done()">Back to Query Options</button>
-        </div>
+        </div> -->
+<!-- 
+        <div id="query3">
+            query 3
+
+                <button onclick="done()">Back to Query Options</button>
+        </div> -->
 
     </div>
 
@@ -130,11 +173,25 @@
 </body>
 
 <script>
-    function goBack() {
-        window.history.back();
+    function goHome() {
+        window.location.href = "index.html";
     }
 
-    function toggle1() {
+    function query1(){
+        window.location.href = "people/people-query-1.html";
+    }
+
+    function query2(){
+        window.location.href = "people/people-query-2.html";
+    }
+
+
+    function query3(){
+        window.location.href = "people/people-query-3.html";
+    }
+
+
+    /*function toggle1() {
         var query = document.getElementById("query1");
         if (query.style.display === "block"){
             query.style.display = "none";
@@ -165,7 +222,7 @@
     }
 
     function toggle3() {
-        var query = document.getElementById("query2");
+        var query = document.getElementById("query3");
         if (query.style.display === "block"){
             query.style.display = "none";
         } else {
@@ -177,8 +234,9 @@
         for (i = 0; i < options.length; i++){
             options[i].style.display = "none"         
         }
-    }
+    }*/
 
+    /*
     function done(){
 
         var options = document.getElementsByClassName("query");
@@ -189,14 +247,14 @@
 
         var query1 = document.getElementById("query1");
         var query2 = document.getElementById("query2");
-        var query2 = document.getElementById("query3");
+        var query3 = document.getElementById("query3");
 
         query1.style.display = "none"
         query2.style.display = "none"
         query3.style.display = "none"
 
 
-    }
+    }*/
 </script>
 
 </html>
