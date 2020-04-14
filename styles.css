@@ -70,7 +70,7 @@ h2{
 
 .homepage-grid{
     display: grid;
-    grid-template-columns: repeat(8,1fr);
+    grid-template-columns: repeat(9,1fr);
     grid-gap: 30px;
     grid-auto-rows: minmax(100px, auto);
     
@@ -78,7 +78,7 @@ h2{
 
 .homepage-header{
     grid-row: 1;
-    grid-column: 1/9;
+    grid-column: 1/10;
     text-align: center;
     background-color: #22208a;
     margin-top: 0;
@@ -89,7 +89,7 @@ h2{
 .profile{
     /* z-index: 2; */
     grid-row: 1;
-    grid-column: 8/9;
+    grid-column: 9/10;
     /* margin: auto; */
     align-self: center;
     justify-self: center;
@@ -101,22 +101,25 @@ h2{
     /* z-index: 2; */
     grid-row: 1;
     grid-column: 1/2;
-    /* margin: auto; */
-    align-self: center;
-    justify-self: center;
-    width: 70%;
-    height: auto;
-    color: #ffffff;
+    margin: auto;
+    background-color: transparent;
+    color: white;
+    
     cursor: pointer;
 }
 
 .back > p:hover{
-    color: #c3c3c3;
+    background-color: #2980B9;
 }
 
 .back > p{
     text-align: center;
-    font-size: 18px;
+    font-size: 18px;  
+    border: 1px solid #ffffff;
+    border-radius: 7px; 
+    padding: 10px;
+    font-size: 16px;
+    
 }
 
 .category-card{
@@ -139,38 +142,53 @@ h2{
 }
 
 
-.age-group{
+.people{
     
     grid-row: 3;
-    grid-column: 3/5;
+    grid-column: 3;
+}
+
+.vehicles{
+
+    grid-row: 3;
+    grid-column: 5;
+}
+
+.safety{
+
+    grid-row: 3;
+    grid-column: 7;
+
+}
+
+.road{
+
+    grid-row: 4;
+    grid-column: 2;
+
+}
+
+.severity{
+
+    grid-row: 4;
+    grid-column: 4;
+
 }
 
 .weather{
 
-    grid-row: 3;
-    grid-column: 5/7;
-}
-
-.vehicle{
-
     grid-row: 4;
-    grid-column: 2/4;
+    grid-column: 6;
 
 }
 
 .time{
 
     grid-row: 4;
-    grid-column: 4/6;
+    grid-column: 8;
 
 }
 
-.road-conditions{
-
-    grid-row: 4;
-    grid-column: 6/8;
-
-}
 
 .profile-image{
     width: 50%;
@@ -180,7 +198,11 @@ h2{
     
 }
 
-
+.settings{
+    margin: auto;
+    width: auto;
+    height: auto;
+}
 /* TRENDS */
 
 .trends-page{
@@ -218,6 +240,58 @@ h2{
     text-align: center;
 }
 
+.query{
+    grid-column: 3/5;
+    border: solid 2px #22208a;
+    border-radius: 5px;
+    text-align: center;
+    color: #22208a;
+    padding: 10px;
+    
+}
+
+.query > p{
+    font-size: 20px;
+    font-weight: 400;
+    
+}
+
+.query:hover{
+    cursor: pointer;
+    background-color: #2980B9;
+    color: #ffffff;
+    opacity: 0.5;
+    
+}
+
+#query1{
+    display: none;
+    grid-column: 2/3;
+}
+
+#query2{
+    display: none;
+}
+
+#query3{
+    display: none;
+}
+
+.selection-label{
+    font-size: 20px;
+}
+
+select, label{
+    display: block;
+}
+
+.mySelect{
+    font-size: 18px;
+    border-radius: 2px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 /* TIME PERIODS  */
 
 .time-period-card{
@@ -239,11 +313,11 @@ h2{
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #3498DB;
+    background-color: transparent;
     color: white;
     padding: 16px;
     font-size: 16px;
-    border: none;
+    border: 1px solid #ffffff;
     border-radius: 7px;
     cursor: pointer;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
@@ -252,6 +326,9 @@ h2{
   /* Dropdown button on hover & focus */
   .dropbtn:hover, .dropbtn:focus {
     background-color: #2980B9;
+    border-radius: 7px;
+    
+
   }
   
   /* The container <div> - needed to position the dropdown content */

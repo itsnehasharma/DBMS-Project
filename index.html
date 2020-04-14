@@ -17,41 +17,38 @@
         </div>
 
         <div class="profile">
-                <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn">Settings</button>
-                        <div id="myDropdown" class="dropdown-content">
-                          <a href="login.html">Log Out</a>
-                          <!-- <a href="#">Link 2</a>
-                          <a href="#">Link 3</a> -->
-                        </div>
-                      </div>
-            <!-- <img class="profile-image" src="account.svg" alt=""> -->
+            <div class="dropdown">
+
+                <button onclick="myFunction()" class="dropbtn">Settings</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="login.html">Log Out</a>
+                </div>
+            </div>
         </div>
 
-        <div class="category-card age-group">
-
-            <a href="age-group-trends.html">
-                <h2>Age Group Trends</h2>
-            </a>
-
+        <div class="category-card people" onclick="goToPeople()">
+            <h2>People</h2>
         </div>
 
-        <div class="category-card weather">
-
-            <h2>Weather Trends</h2>
+        <div class="category-card vehicles" onclick="goToVehicles()">
+            <h2>Vehicles</h2>
         </div>
-        <div class="category-card vehicle">
-            <h2>Vehicle Trends</h2>
+        <div class="category-card safety" onclick="goToSafety()">
+            <h2>Safety</h2>
         </div>
-        <div class="category-card time">
-
-            <a href="time-periods.html">
-                <h2>Time Period Trends</h2>
-            </a>
-
+        <div class="category-card road" onclick="goToRoad()">
+            <h2>Road</h2>
         </div>
-        <div class="category-card road-conditions">
-            <h2>Road Conditions</h2>
+        <div class="category-card severity" onclick="goToSeverity()">
+            <h2>Severity</h2>
+        </div>
+
+        <div class="category-card weather" onclick="goToWeather()">
+            <h2>Weather</h2>
+        </div>
+
+        <div class="category-card time" onclick="goToTime()">
+            <h2>Time</h2>
         </div>
 
 
@@ -63,22 +60,49 @@
 
     /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
     }
-  }
-}
+
+    function goToPeople() {
+        window.location.href = "people.html";
+    }
+
+    function goToVehicles() {
+        window.location.href = "vehicles.html";
+    }
+
+    function goToSafety() {
+        window.location.href = "safety.html";
+    }
+
+    function goToRoad() {
+        window.location.href = "road.html";
+    }
+
+    function goToSeverity() {
+        window.location.href = "severity.html";
+    }
+    function goToWeather() {
+        window.location.href = "weather.html";
+    }
+
+    function goToTime() {
+        window.location.href = "time.html";
+    }
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
 </script>
+
 </html>
