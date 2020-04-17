@@ -72,7 +72,7 @@ h2{
     display: grid;
     grid-template-columns: repeat(9,1fr);
     grid-gap: 30px;
-    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: minmax(125px, auto);
     
 }
 
@@ -96,6 +96,21 @@ h2{
     width: 70%;
     height: auto;
 }
+
+
+.comp{
+    /* z-index: 2; */
+    grid-row: 1;
+    grid-column: 1/5;
+    /* margin: auto; */
+    align-self: center;
+    justify-self: flex-start;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+}
+
+
 
 .back{
     /* z-index: 2; */
@@ -124,14 +139,17 @@ h2{
 
 .category-card{
     background: #3532D7;
-    text-align: center;
-    margin: auto;
+    display: flex;
     border: 1px solid transparent;
     border-radius: 7px;
     color: #ffffff;
     cursor: pointer;
-}
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
 
+}
 .category-card:hover{
     background-color: #22208a;
 }
@@ -141,23 +159,27 @@ h2{
     color: #ffffff;
 }
 
+.category-card > h2{
+    vertical-align: middle;
+}
+
 
 .people{
     
     grid-row: 3;
-    grid-column: 3;
+    grid-column: 2;
 }
 
 .vehicles{
 
     grid-row: 3;
-    grid-column: 5;
+    grid-column: 4;
 }
 
 .safety{
 
     grid-row: 3;
-    grid-column: 7;
+    grid-column: 6;
 
 }
 
@@ -184,9 +206,14 @@ h2{
 
 .time{
 
-    grid-row: 4;
+    grid-row: 3;
     grid-column: 8;
 
+}
+
+.count-tuples{
+    grid-row: 4;
+    grid-column: 8;
 }
 
 
