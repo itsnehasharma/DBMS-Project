@@ -1,4 +1,13 @@
-<?php 
+<?php
+
+if (isset($_POST['starting-year']))
+{
+    $start = $_POST['starting-year'];
+}
+if (isset($_POST['ending-year']))
+{
+    $end = $_POST['ending-year'];
+}
 
 $username = "shreyans";                   // Use your username
 $password = "Qwerty123";                  // and your password
@@ -163,7 +172,7 @@ WHERE v.cid = c.collision_id AND v.vehicle_type <> -1) A
 WHERE VEHICLE_TYPE = 23
 GROUP BY A.YEAR, a.vehicle_type
 ORDER BY YEAR, VEHICLE_TYPE)
-WHERE YEAR BETWEEN 2000 AND 2005)";
+WHERE YEAR BETWEEN '$start' AND '$end')";
 
 $c = oci_connect($username, $password, $database);
 if (!$c) {
@@ -191,31 +200,119 @@ while($row = oci_fetch_array($s, OCI_BOTH)){
 $chart_data = substr($chart_data, 0, -2);
 
 ?>
+<html lang="en">
+
+<head>
+
+    <head>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="..\styles.css">
+        <title>Vehicle Trends</title>
+    </head>
+</head>
+
+<body class="trends-page">
+
+    <div class="trends-page-grid">
+
+        <div class="back" onclick="goHome()">
+            <p>Back to Home</p>
+        </div>
+
+        <div class="trends-page-header">
+            <h1>Vehicle Trends</h1>
+        </div>
+
+        <button onclick="done()" class="back-to-cat">Vehicle Queries</button>
 
 
-<!DOCTYPE html>
-<html>
- <head>
-  <title>Webslesson Tutorial | How to use Morris.js chart with PHP & Mysql</title>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-  
- </head>
- <body>
-  <center>
-  <br /><br />
-  <div class="container" style="width:900px;">
-   <!--<h2 align="center">Morris.js chart with PHP & Mysql</h2>-->
-   <h1 align="center">Collision Data Through the years</h3>   
-   <br /><br />
-   <div id="chart"></div>
-  </div>
-</center>
- </body>
-</html>
+        <div class="query-title">
+            <h1>Show a trend of the number of new vehicles that were a part of a collision in the same year as their manufacturing
+                over a period of years.</h1>
+        </div>
 
+
+        <div class="selector-box">
+
+            <form method="post" action="vehicle-query-1.php">
+
+                <label for="starting-year" class="selection-label">Starting Year: </label>
+                <select name="starting-year" id="starting-year" class="mySelect">
+                    <!--<option value="1999">1999</option>-->
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                </select>
+
+
+                <label for="ending-year" class="selection-label">Ending Year:</label>
+                <select name="ending-year" id="ending-year" class="mySelect">
+                    <!--<option value="1999">1999</option>-->
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                </select>
+
+                <br>
+                <input type="submit" class="enter-button">
+
+
+            </form>
+        </div>
+
+        <div class="display-graph">
+            <h1>Ratio of collisions between various different types of vehicles between <?=$start?> and <?=$end?>.</h1>
+            <div id="chart"></div>
+        </div>
+
+    </div>
+
+    </div>
+
+
+</body>
+
+<script>
+    function goHome() {
+        window.location.href = "../index.html";
+    }
+
+    function done() {
+
+        window.location.href = "../vehicles.html";
+
+    }
+</script>
 <script>
 Morris.Bar({
  element : 'chart',
@@ -227,3 +324,4 @@ Morris.Bar({
  stacked:false
 });
 </script>
+</html>
