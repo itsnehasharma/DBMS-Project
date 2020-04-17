@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,31 +31,39 @@
 
 
         <div class="query-title">
-            <h1>Show a trend of the number of male and female drivers involved in collisions occurring over a period of years</h1>
+            <h1>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse weather
+                condition at certain road surface for a span of years</h1>
         </div>
 
 
-        <!-- does this need to be in a form wrapper? -->
-
         <div class="selector-box">
 
-            <form method="POST" action="people-query-3.php">
+            <form method="post" action="people-query-1.php">
 
-                <!--<label for="starting-month" class="selection-label">Starting Month: </label>
-                <select name="starting-month" id="starting-month" class="mySelect">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>-->
+                <label for="weather-cond" class="selection-label">Weather Condition:</label>
+                <select name="weather-cond" id="weather-cond" class="mySelect">
+                    <option value="1">Clear and Sunny</option>
+                    <option value="2">Overcast</option>
+                    <option value="3">Raining</option>
+                    <option value="4">Snowing</option>
+                    <option value="5">Freezing rain, sleet, hail</option>
+                    <option value="6">Visibility Limitation</option>
+                    <option value="7">Strong wind</option>
+                </select>
+
+                <label for="road-surface" class="selection-label">Road Surface:</label>
+                <select name="road-surface" id="road-surface" class="mySelect">
+                    <option value="1">Dry, normal</option>
+                    <option value="2">Wet</option>
+                    <option value="3">Snow (fresh, loose snow)</option>
+                    <option value="4">Slush, wet snow</option>
+                    <option value="5">Icy, Includes packed snow</option>
+                    <option value="6">Sand/gravel/dirt</option>
+                    <option value="7">Muddy</option>
+                    <option value="8">Oil</option>
+                    <option value="9">Flooded</option>
+                </select>
+
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
@@ -74,21 +85,6 @@
                     <option value="2014">2014</option>
                 </select>
 
-                <!--<label for="ending-month" class="selection-label">Ending Month: </label>
-                <select name="ending-month" id="ending-month" class="mySelect">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>-->
 
                 <label for="ending-year" class="selection-label">Ending Year:</label>
                 <select name="ending-year" id="ending-year" class="mySelect">
@@ -111,16 +107,15 @@
                 </select>
 
                 <br>
-                <!-- is this what you need for the submit -->
                 <input type="submit" class="enter-button">
-            </form>
 
+
+            </form>
         </div>
 
-
-        <!--<div class="display-graph">
+        <div class="display-graph">
             <h1>insert graph here</h1>
-        </div>-->
+        </div>
 
     </div>
 
