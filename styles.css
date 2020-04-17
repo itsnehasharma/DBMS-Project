@@ -265,6 +265,24 @@ h2{
     grid-row: 3/5;
 }
 
+.nested-form{
+    grid-column: 2/6;
+}
+
+.form-left-right{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.select-left{
+    grid-column: 1/2;
+}
+
+.select-right{
+    grid-column: 2/3;
+}
+
 .nested-graphs{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
