@@ -233,14 +233,15 @@ $chart_data = substr($chart_data, 0, -2);
 
 
         <div class="query-title">
-            <h1>Show a trend of the number of new vehicles that were a part of a collision in the same year as their manufacturing
-                over a period of years.</h1>
+            <h1>Display a Mosaic or Mekko chart showing the number of collisions for each vehicle type over a period of months
+                or years
+            </h1>
         </div>
 
 
         <div class="selector-box">
 
-            <form method="post" action="vehicle-query-1.php">
+            <form method="post" action="vehicle-query-2.php">
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
