@@ -1,9 +1,62 @@
+<?php
+
+if (isset($_POST['starting-year']))
+{
+    $start = $_POST['starting-year'];
+}
+if (isset($_POST['ending-year']))
+{
+    $end = $_POST['ending-year'];
+}
+
+$username = "shreyans";                   // Use your username
+$password = "Qwerty123";                  // and your password
+$database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
+
+$query = "SELECT A.YEAR, COUNT(A.VEHICLE_ID) AS nv
+FROM (SELECT v.vehicle_id, c.year
+FROM DOSPINA.VEHICLE V, DOSPINA.COLLISION C
+WHERE v.cid = c.collision_id AND v.vehicle_year = c.year) A
+WHERE YEAR BETWEEN '$start' AND '$end'
+GROUP BY YEAR
+ORDER BY YEAR";
+
+$c = oci_connect($username, $password, $database);
+if (!$c) {
+    $m = oci_error();
+    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
+}
+$s = oci_parse($c, $query);
+if (!$s) {
+    $m = oci_error($c);
+    trigger_error('Could not parse statement: '. $m['message'], E_USER_ERROR);
+}
+$r = oci_execute($s);
+if (!$r) {
+    $m = oci_error($s);
+    trigger_error('Could not execute statement: '. $m['message'], E_USER_ERROR);
+}
+
+$chart_data = " ";
+while($row = oci_fetch_array($s, OCI_BOTH)){
+  //$data[] = $row;
+  //'" < These quotes + Double quotes below on year represent X-Axis > "'
+  $chart_data .= "{ year:'".$row["YEAR"]."', nv:".$row["NV"]."}, ";
+}
+//To remove last comma from $chart_data
+$chart_data = substr($chart_data, 0, -2);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <head>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -84,7 +137,10 @@
 
             </form>
         </div>
-
+        <div class="display-graph">
+            <h1>New Vehicles that were part of a collision between <?=$start?> and <?=$end?>.</h1>
+            <div id="chart"></div>
+        </div>
     </div>
 
     </div>
@@ -103,5 +159,15 @@
 
     }
 </script>
-
+<script>
+Morris.Line({
+ element : 'chart',
+ data:[<?php echo $chart_data; ?>],
+ xkey:'year',
+ ykeys:['nv'],
+ labels:['Number of New Vehicles'],
+ hideHover:'auto',
+ stacked:false
+});
+</script>
 </html>
