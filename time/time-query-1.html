@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="..\styles.css">
+        <title>Time Trends</title>
+    </head>
+</head>
+
+<body class="trends-page">
+
+    <div class="trends-page-grid">
+
+        <div class="back" onclick="goHome()">
+            <p>Back to Home</p>
+        </div>
+
+        <div class="trends-page-header">
+            <h1>Time Trends</h1>
+        </div>
+
+        <button onclick="done()" class="back-to-cat">Time Queries</button>
+
+
+        <div class="query-title">
+            <h1>Show a graph depicting the number of accidents over a period of 12 months of a particular year 
+                with respect to astronomical twilight</h1>
+        </div>
+
+
+        <div class="selector-box">
+
+            <form method="post">
+
+
+                <label for="year" class="selection-label">Year: </label>
+                <select name="year" id="year" class="mySelect">
+                    <option value="1999">1999</option>
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                </select>
+                <br>
+                <input type="submit" class="enter-button">
+
+
+            </form>
+        </div>
+
+        <div class="display-full">
+            <h1>insert graph here</h1>
+        </div>
+
+    </div>
+
+    </div>
+
+
+</body>
+
+<script>
+    function goHome() {
+        window.location.href = "../index.html";
+    }
+
+    function done() {
+
+        window.location.href = "../time.html";
+
+    }
+</script>
+
+</html>
