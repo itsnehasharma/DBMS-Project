@@ -16,6 +16,10 @@
             <h1>Trend Categories</h1>
         </div>
 
+        <div class="comp">
+
+            <button class="dropbtn" onclick="goToComp()">Complicated Queries</button>
+        </div>
         <div class="profile">
             <div class="dropdown">
 
@@ -49,6 +53,10 @@
 
         <div class="category-card time" onclick="goToTime()">
             <h2>Time</h2>
+        </div>
+
+        <div class="category-card count-tuples" onclick="showTupleCount()">
+            <h2>Tuple Count</h2>
         </div>
 
 
@@ -90,6 +98,10 @@ toggle between hiding and showing the dropdown content */
     function goToTime() {
         window.location.href = "time.html";
     }
+
+    function goToComp() {
+        window.location.href = "complicated-queries.html";
+    }
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
@@ -102,6 +114,10 @@ toggle between hiding and showing the dropdown content */
                 }
             }
         }
+    }
+
+    function showTupleCount(){
+
     }
 </script>
 

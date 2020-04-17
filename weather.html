@@ -16,15 +16,15 @@
 
     <div class="trends-page-grid">
 
-        <div class="back" onclick="goBack()">
+        <div class="back" onclick="goHome()">
             <p>Back</p>
         </div>
 
         <div class="trends-page-header">
-            <h1>Road Trends</h1>
+            <h1>Weather Trends</h1>
         </div>
 
-        <div class="query">
+        <div class="query" onclick="query1()">
             <p>Show a trend of the number of accidents occurring per year over a variable time span of years
                 with respect to the weather conditions</p>
         </div>
@@ -33,9 +33,14 @@
 </body>
 
 <script>
-    function goBack() {
-        window.history.back();
-    }
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    
+        function query1(){
+            window.location.href = "weather/weather-query-1.html";
+        }
+    
 </script>
 
 </html>
