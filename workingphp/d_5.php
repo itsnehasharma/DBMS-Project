@@ -4,18 +4,57 @@ $username = "shreyans";                   // Use your username
 $password = "Qwerty123";                  // and your password
 $database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
 
-$query = "SELECT *
-  FROM (SELECT COUNT(ROWNUM) AS MALE, C.YEAR
-  FROM DOSPINA.person P, DOSPINA.collision C
-  WHERE P.CID = C.COLLISION_ID AND P.SEX <> '-1' AND p.position = 11 AND p.sex = 'M'
-  GROUP BY c.year
-  ORDER BY c.year) A NATURAL JOIN
-  (SELECT COUNT(ROWNUM) AS FEMALE, C.YEAR
-  FROM DOSPINA.person P, DOSPINA.collision C
-  WHERE P.CID = C.COLLISION_ID AND P.SEX <> '-1' AND p.position = 11 AND p.sex = 'F'
-  GROUP BY c.year
-  ORDER BY c.year) B
-  WHERE YEAR BETWEEN 2000 AND 2005";
+$query = "SELECT ROWNUM, *
+FROM (SELECT M_S, M_WS
+FROM (SELECT COUNT(*) AS M_S
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position = 99 AND p.safety_device_used = 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 6 AND 11) ,
+(SELECT COUNT(*) AS M_WS
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position=99 AND p.safety_device_used <> 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 6 AND 11)) A
+UNION
+(SELECT A_S, A_WS
+FROM(SELECT COUNT(*) AS A_S
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position = 99 AND p.safety_device_used = 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 12 AND 16) ,
+(SELECT COUNT(*) AS A_WS
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position=99 AND p.safety_device_used <> 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 12 AND 16) )
+UNION
+(SELECT E_S, E_WS
+FROM (SELECT COUNT(*) AS E_S
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position = 99 AND p.safety_device_used = 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 17 AND 19),
+(SELECT COUNT(*) AS E_WS
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position=99 AND p.safety_device_used <> 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 17 AND 19))
+UNION
+(SELECT N_S, N_WS
+FROM (SELECT A.NIGHT_S + B.NIGHT_S AS N_S
+FROM (SELECT COUNT(*) AS NIGHT_S
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position = 99 AND p.safety_device_used = 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 20 AND 23) A,
+(SELECT COUNT(*) AS NIGHT_S
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position=99 AND p.safety_device_used = 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 0 AND 5) B) I,
+(SELECT A.NIGHT_WS + B.NIGHT_WS AS N_WS
+FROM (SELECT COUNT(*) AS NIGHT_WS
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position = 99 AND p.safety_device_used <> 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 20 AND 23) A,
+(SELECT COUNT(*) AS NIGHT_WS
+FROM DOSPINA.person P, DOSPINA.collision C, DOSPINA.vehicle V
+WHERE P.CID = C.COLLISION_ID AND v.cid = C.COLLISION_ID AND p.position=99 AND p.safety_device_used <> 10 AND p.position<>-1 AND p.safety_device_used<>-1
+AND c.hour BETWEEN 0 AND 5) B) J)
+";
 
 $c = oci_connect($username, $password, $database);
 if (!$c) {
