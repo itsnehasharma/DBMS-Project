@@ -5,15 +5,15 @@ $password = "Qwerty123";                  // and your password
 $database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
 
 $query = "SELECT YEAR, ROUND(AVG(A.AGE),2) as AVG_AGE
-FROM (SELECT p.age, p.position, p.medical_treatment, c.weather_id, c.roadsurface_id, c.year
-FROM DOSPINA.PERSON P, DOSPINA.COLLISION C
-WHERE P.CID = C.COLLISION_ID AND AGE <> -1 AND p.position = 11
-AND p.medical_treatment BETWEEN 2 AND 3
-AND c.weather_id = 3
-AND c.roadsurface_id = 2) A
-WHERE YEAR BETWEEN 1999 AND 2003
-GROUP BY A.YEAR
-ORDER BY YEAR DESC";
+          FROM (SELECT p.age, p.position, p.medical_treatment, c.weather_id, c.roadsurface_id, c.year
+          FROM DOSPINA.PERSON P, DOSPINA.COLLISION C
+          WHERE P.CID = C.COLLISION_ID AND AGE <> -1 AND p.position = 11
+          AND p.medical_treatment BETWEEN 2 AND 3
+          AND c.weather_id = 3
+          AND c.roadsurface_id = 2) A
+          WHERE YEAR BETWEEN 1999 AND 2003
+          GROUP BY A.YEAR
+          ORDER BY YEAR DESC";
 
 $c = oci_connect($username, $password, $database);
 if (!$c) {
