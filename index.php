@@ -191,7 +191,7 @@ toggle between hiding and showing the dropdown content */
     }
 
     function showTupleCount(){
-
+        //window.location.href = "index.php"
     }
 </script>
 

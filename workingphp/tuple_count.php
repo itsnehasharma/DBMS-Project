@@ -71,7 +71,4 @@ if (!$r) {
 $row = oci_fetch_array($s, OCI_BOTH);
 $total = $row['TUPLE'];
 echo $total;
-
-
-
 ?>

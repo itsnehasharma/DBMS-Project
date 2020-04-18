@@ -34,7 +34,7 @@ AND c.weather_id = '$weather'
 AND c.roadsurface_id = '$road') A
 WHERE YEAR BETWEEN '$start' AND '$end'
 GROUP BY A.YEAR
-ORDER BY YEAR DESC";
+ORDER BY YEAR";
 
 $s = oci_parse($c, $query);
 if (!$s) {
