@@ -19,14 +19,16 @@ SELECT COUNT(*) AS WITHOUT_SEATBELT, C.Year
 FROM dospina.COLLISION C, dospina.PERSON P
 WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 1 AND (P.medical_treatment = 3 OR P.medical_treatment = 2)
 GROUP BY C.year
+ORDER BY Year ASC
 ) 
 NATURAL JOIN
 (SELECT COUNT(*) AS WITH_SEATBELT, C.Year
 FROM dospina.COLLISION C, dospina.PERSON P
 WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 2 AND (P.medical_treatment = 3 OR P.medical_treatment = 2)
 GROUP BY C.year
-))ORDER BY Year ASC
-)WHERE YEAR BETWEEN '$start' AND '$end';
+ORDER BY Year ASC
+))
+)WHERE YEAR BETWEEN '$start' AND '$end'
 ";
 
 $c = oci_connect($username, $password, $database);
@@ -89,7 +91,7 @@ $chart_data = substr($chart_data, 0, -2);
 
 
         <div class="query-title">
-            <h1>Find number of pedestrians hit for an astronomical twilight time with or without reflective clothing</h1>
+            <h1>Find number of fatalities and injuries from people who did and did not wear seatbelts for a range of years</h1>
         </div>
 
         <div class="selector-box">
@@ -145,7 +147,7 @@ $chart_data = substr($chart_data, 0, -2);
         </div>
     
          <div class="display-graph">
-            <h1>Collisions on weekends and weekdays during evening between <?=$start?> and <?=$end?>.</h1>
+            <h1>Fatalities and injuries for people with and without seatbelts between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
         </div>
 
