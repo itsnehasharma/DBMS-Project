@@ -33,7 +33,7 @@
 
         <div class="selector-box">
 
-            <form method="POST" action="people-query-2.php">
+            <form id = "query-form" method="POST" action="">
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
@@ -77,7 +77,8 @@
                 </select>
 
                 <br>
-                <input type="submit" class="enter-button">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-2b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-2l.php')">
 
             </form>
 
@@ -104,6 +105,12 @@
         window.location.href = "../people.html";
 
     }
+
+    function submitForm(action){
+        document.getElementById('query-form').action = action;
+        document.getElementById('query-form').submit();
+    }
+    
 </script>
 
 </html>
