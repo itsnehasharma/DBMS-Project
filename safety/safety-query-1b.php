@@ -1,9 +1,72 @@
+<?php
+if (isset($_POST['starting-year']))
+{
+    $start = $_POST['starting-year'];
+}
+if (isset($_POST['ending-year']))
+{
+    $end = $_POST['ending-year'];
+}
+
+$username = "shreyans";                   // Use your username
+$password = "Qwerty123";                  // and your password
+$database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
+
+$query = "SELECT * FROM(
+SELECT YEAR, WITHOUT_SEATBELT , WITH_SEATBELT
+FROM((
+SELECT COUNT(*) AS WITHOUT_SEATBELT, C.Year
+FROM dospina.COLLISION C, dospina.PERSON P
+WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 1 AND (P.medical_treatment = 3 OR P.medical_treatment = 2)
+GROUP BY C.year
+ORDER BY Year ASC
+) 
+NATURAL JOIN
+(SELECT COUNT(*) AS WITH_SEATBELT, C.Year
+FROM dospina.COLLISION C, dospina.PERSON P
+WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 2 AND (P.medical_treatment = 3 OR P.medical_treatment = 2)
+GROUP BY C.year
+ORDER BY Year ASC
+))
+)WHERE YEAR BETWEEN '$start' AND '$end'
+";
+
+$c = oci_connect($username, $password, $database);
+if (!$c) {
+    $m = oci_error();
+    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
+}
+$s = oci_parse($c, $query);
+if (!$s) {
+    $m = oci_error($c);
+    trigger_error('Could not parse statement: '. $m['message'], E_USER_ERROR);
+}
+$r = oci_execute($s);
+if (!$r) {
+    $m = oci_error($s);
+    trigger_error('Could not execute statement: '. $m['message'], E_USER_ERROR);
+}
+
+$chart_data = " ";
+while($row = oci_fetch_array($s, OCI_BOTH)){
+  //$data[] = $row;
+  //'" < These quotes + Double quotes below on year represent X-Axis > "'
+  $chart_data .= "{ year:'".$row["YEAR"]."', without_seatbelt:".$row["WITHOUT_SEATBELT"].", with_seatbelt:".$row["WITH_SEATBELT"]."}, ";
+}
+//To remove last comma from $chart_data
+$chart_data = substr($chart_data, 0, -2);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <head>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -77,14 +140,17 @@
                 </select>
 
                 <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
+                <input type="submit" class="enter-button">
 
 
             </form>
         </div>
     
-      
+         <div class="display-graph">
+            <h1>Fatalities and injuries for people with and without seatbelts between <?=$start?> and <?=$end?>.</h1>
+            <div id="chart"></div>
+        </div>
+
     </div>
 
     </div>
@@ -102,11 +168,16 @@
         window.location.href = "../safety.html";
 
     }
-
-    function submitForm(action){
-        document.getElementById('query-form').action = action;
-        document.getElementById('query-form').submit();
-    }
 </script>
-
+<script>
+Morris.Bar({
+ element : 'chart',
+ data:[<?php echo $chart_data; ?>],
+ xkey:'year',
+ ykeys:['without_seatbelt', 'with_seatbelt'],
+ labels:['Without Seatbelt', 'With Seatbelt'],
+ hideHover:'auto',
+ stacked:false
+});
+</script>
 </html>
