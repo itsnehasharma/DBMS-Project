@@ -203,7 +203,7 @@ $chart_data = substr($chart_data, 0, -2);
     }
 </script>
 <script>
-Morris.Bar({
+Morris.Line({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',

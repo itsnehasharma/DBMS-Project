@@ -97,7 +97,7 @@ while($row = oci_fetch_array($s, OCI_BOTH)){
 }
 //To remove last comma from $chart_data
 $chart_data = substr($chart_data, 0, -2);
-
+echo $chart_data;
 ?>
 
 <!DOCTYPE html>
@@ -208,7 +208,7 @@ Morris.Line({
  data:[<?php echo $chart_data; ?>],
  xkey:'month',
  ykeys:['am','aa','ae','an'],
- labels:['Accident in Morning','Accident in Afternoon','Accident in Evening','Accident in Night'],
+ labels:['Morning','Afternoon','Evening','Night'],
  hideHover:'auto',
  stacked:false
 });
