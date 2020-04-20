@@ -165,7 +165,7 @@ echo $chart_data;
                 </select>
                 <br>
                 <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('time-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('time-query-1l.php')">
+                <!--<input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('weather-query-1l.php')">-->
 
 
             </form>
