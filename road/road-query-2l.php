@@ -101,7 +101,7 @@ $chart_data = substr($chart_data, 0, -2);
 
         <div class="selector-box">
 
-            <form method="POST" action="road-query-2.php">
+            <form method="POST" action="road-query-2.php" id="query-form">
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
@@ -145,7 +145,8 @@ $chart_data = substr($chart_data, 0, -2);
                 </select>
 
                 <br>
-                <input type="submit" class="enter-button">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('road-query-2b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('road-query-2b.php')">
 
             </form>
 
@@ -167,6 +168,11 @@ $chart_data = substr($chart_data, 0, -2);
 
         window.location.href = "../road.html";
 
+    }
+
+    function submitForm(action){
+        document.getElementById('query-form').action = action;
+        document.getElementById('query-form').submit();
     }
 </script>
 <script>

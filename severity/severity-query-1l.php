@@ -94,7 +94,7 @@ $chart_data = substr($chart_data, 0, -2);
 
         <div class="selector-box">
 
-            <form method="post" action="severity-query-1.php">
+            <form method="post" action="severity-query-1.php" id="query-form">
 
 
                 <label for="year" class="selection-label">Year: </label>
@@ -117,7 +117,8 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="2014">2014</option>
                 </select>
                 <br>
-                <input type="submit" class="enter-button">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('severity-query-1b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('severity-query-1l.php')">
 
 
             </form>
@@ -144,6 +145,11 @@ $chart_data = substr($chart_data, 0, -2);
 
         window.location.href = "../severity.html";
 
+    }
+
+    function submitForm(action){
+        document.getElementById('query-form').action = action;
+        document.getElementById('query-form').submit();
     }
 </script>
 

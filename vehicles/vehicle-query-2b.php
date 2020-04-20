@@ -241,7 +241,7 @@ $chart_data = substr($chart_data, 0, -2);
 
         <div class="nested-form">
 
-            <form method="post" action="vehicle-query-2.php" class="form-left-right">
+            <form method="post" action="vehicle-query-2.php" class="form-left-right" id="query-form">
 
                 <div class="select-left">
                         <label for="starting-year" class="selection-label">Starting Year: </label>
@@ -296,7 +296,8 @@ $chart_data = substr($chart_data, 0, -2);
 
                 <div class="select-left">
 
-                        <input type="submit" class="enter-button">
+                    <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('vehicle-query-2b.php')">
+                    <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('vehicle-query-2l.php')">
                 </div>
 
 
@@ -324,6 +325,11 @@ $chart_data = substr($chart_data, 0, -2);
 
         window.location.href = "../vehicles.html";
 
+    }
+
+    function submitForm(action){
+        document.getElementById('query-form').action = action;
+        document.getElementById('query-form').submit();
     }
 </script>
 <script>

@@ -98,7 +98,7 @@ $chart_data = substr($chart_data, 0, -2);
 
         <div class="selector-box">
 
-            <form id="query-form" method="post">
+            <form id="query-form" method="post" action="">
 
                 <label for="weather-cond" class="selection-label">Weather Condition:</label>
                 <select name="weather-cond" id="weather-cond" class="mySelect">
@@ -169,6 +169,7 @@ $chart_data = substr($chart_data, 0, -2);
                 <br>
                 <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
                 <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
+
 
             </form>
         </div>

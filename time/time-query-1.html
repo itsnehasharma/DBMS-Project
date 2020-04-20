@@ -35,7 +35,7 @@
 
         <div class="selector-box">
 
-            <form method="post" action ="time-query-1.php">
+            <form method="post" action ="time-query-1.php" id="query-form">
 
 
                 <label for="year" class="selection-label">Year: </label>
@@ -58,7 +58,8 @@
                     <option value="2014">2014</option>
                 </select>
                 <br>
-                <input type="submit" class="enter-button">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('time-query-1b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('time-query-1l.php')">
 
 
             </form>

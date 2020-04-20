@@ -118,7 +118,7 @@ $chart_data = substr($chart_data, 0, -2);
 
         <div class="selector-box">
 
-            <form method="post" action="safety-query-2.php">
+            <form method="post" action="safety-query-2.php" id="query-form">
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
@@ -162,7 +162,8 @@ $chart_data = substr($chart_data, 0, -2);
                 </select>
 
                 <br>
-                <input type="submit" class="enter-button">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('safety-query-2b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('safety-query-2l.php')">
 
 
             </form>
@@ -189,6 +190,11 @@ $chart_data = substr($chart_data, 0, -2);
 
         window.location.href = "../safety.html";
 
+    }
+
+    function submitForm(action){
+        document.getElementById('query-form').action = action;
+        document.getElementById('query-form').submit();
     }
 </script>
 <script>
