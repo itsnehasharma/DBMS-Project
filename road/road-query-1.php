@@ -98,102 +98,95 @@ $chart_data2 = substr($chart_data2, 0, -2);
 
 
         <div class="query-title">
-            <h1>Display two pie charts depicting the number of fatalities that occur at different road configurations in two
+            <h1>Display two pie charts depicting the number of fatalities that occur at different road configurations in
+                two
                 different years (Interactive)</h1>
         </div>
 
 
-        <div class="nested">
+
+        <div class="nested-form">
 
 
-            <div class="nested-graphs">
+            <form method="post" action="road-query-1.php" class="form-left-right">
 
 
-                <div class="nested-choose-L">
+                <div class="select-left">
 
-
-                    <form method="post" action="road-query-1.php">
-
-                        <label for="year-1" class="selection-label">Year 1:</label>
-                        <select name="year-1" id="year-1" class="mySelect">
-                            <option value="1999">1999</option>
-                            <option value="2000">2000</option>
-                            <option value="2001">2001</option>
-                            <option value="2002">2002</option>
-                            <option value="2003">2003</option>
-                            <option value="2004">2004</option>
-                            <option value="2005">2005</option>
-                            <option value="2006">2006</option>
-                            <option value="2007">2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                        </select>
-
-                        <label for="year-2" class="selection-label">Year 2:</label>
-                        <select name="year-2" id="year-2" class="mySelect">
-                            <option value="1999">1999</option>
-                            <option value="2000">2000</option>
-                            <option value="2001">2001</option>
-                            <option value="2002">2002</option>
-                            <option value="2003">2003</option>
-                            <option value="2004">2004</option>
-                            <option value="2005">2005</option>
-                            <option value="2006">2006</option>
-                            <option value="2007">2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                        </select>
-
-                        <input type="submit" class="enter-button">
-
-                    </form>
+                    <label for="year-1" class="selection-label">Year 1:</label>
+                    <select name="year-1" id="year-1" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
                 </div>
 
-                <!--<div class="nested-choose-R">
+                <div class="select-right">
 
-                    <form method="POST">
+                    <label for="year-2" class="selection-label">Year 2:</label>
+                    <select name="year-2" id="year-2" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
-                        
 
-                        <input type="submit" class="enter-button">
+                </div>
 
-                    </form>
+                <div class="select-left">
 
-                </div>-->
+                    <input type="submit" class="enter-button">
 
-            </div>
-                <div class="nested-graph-L">
+                </div>
+
+            </form>
+
+            <div class="form-left-right">
+
+                <div class="select-left">
+
                     <h1><?=$year1?></h1>
                     <div id="chart1"></div>
+
                 </div>
-                <div class="nested-graph-R">
+
+                <div class="select-right">
+
                     <h1><?=$year2?></h1>
                     <div id="chart2"></div>
                 </div>
 
-
-
             </div>
 
 
-
-
-
             <br>
-
-
-
 
         </div>
 
@@ -205,26 +198,27 @@ $chart_data2 = substr($chart_data2, 0, -2);
 </body>
 
 <script>
-    function goHome() {
-        window.location.href = "../index.html";
-    }
+function goHome() {
+    window.location.href = "../index.html";
+}
 
-    function done() {
+function done() {
 
-        window.location.href = "../road.html";
+    window.location.href = "../road.html";
 
-    }
+}
 </script>
 <script>
 Morris.Donut({
- element : 'chart1',
- data:[<?php echo $chart_data1; ?>]
+    element: 'chart1',
+    data: [ < ? php echo $chart_data1; ? > ]
 });
 </script>
 <script>
 Morris.Donut({
- element : 'chart2',
- data:[<?php echo $chart_data2; ?>]
+    element: 'chart2',
+    data: [ < ? php echo $chart_data2; ? > ]
 });
 </script>
+
 </html>
