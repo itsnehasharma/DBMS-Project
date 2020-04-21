@@ -146,7 +146,7 @@ $chart_data = substr($chart_data, 0, -2);
 
                 <br>
                 <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('road-query-2b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('road-query-2b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('road-query-2l.php')">
 
             </form>
 
