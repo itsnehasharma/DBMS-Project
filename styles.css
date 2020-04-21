@@ -148,14 +148,16 @@ h2{
 
 
 .comp-query{
-    background-color: #c2c5cc;
-    font-family: 'Courier New', Courier, monospace;
-    grid-column: 3/5;
-    border-radius: 4px;
+    
+   
     display: none;
+    grid-column: 3/5;
 }
 
 .comp-query > p{
+    background-color: #c2c5cc;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 4px;
     font-size: 15px;
 }
 
@@ -423,6 +425,28 @@ h2{
     color: #22208a;
     padding: 10px;
     
+}
+
+.link-to-query{
+
+    grid-column: 3/5;
+    border: solid 2px #22208a;
+    border-radius: 5px;
+    text-align: center;
+    color: #22208a;
+    padding: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+.link-to-query:hover{
+    cursor: pointer;
+    background-color: #22208a;
+    color: #FFFFFF;
+}
+
+.link-to-query > p{
+    font-size: 16px;
 }
 
 .query > p{

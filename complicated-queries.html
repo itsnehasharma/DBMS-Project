@@ -32,8 +32,15 @@
             <button class="comp-button" onclick="getQuery4()">4</button>
             <button class="comp-button" onclick="getQuery5()">5</button>
         </div>
+
+
+
         <div class="comp-query" id="1">
 
+            <div class="link-to-query" onclick="query2()">
+                <p>Show the number of injuries in different age groups over a certain period of time</p>
+            </div>
+            <br>
             <p>SELECT YEAR, ROUND(TYPE_1/TOTAL*100,2) AS "Percentage of Type1 Vehicles", ROUND(TYPE_5/TOTAL*100,2) AS "Percentage
                 of Type5 Vehicles", ROUND(TYPE_6/TOTAL*100,2) AS "Percentage of Type6 Vehicles", ROUND(TYPE_7/TOTAL*100,2)
                 AS "Percentage of Type7 Vehicles", ROUND(TYPE_8/TOTAL*100,2) AS "Percentage of Type8 Vehicles", ROUND(TYPE_9/TOTAL*100,2)
@@ -143,7 +150,7 @@
                                                                                     a.vehicle_type ORDER BY YEAR, VEHICLE_TYPE)
                                                                                     WHERE YEAR BETWEEN 2000 AND 2005);
             </p>
-            
+
         </div>
         <div class="comp-query" id="2">
             <p>
@@ -309,6 +316,9 @@
     function hide5() {
         var x = document.getElementById('5');
         x.style.display = "none";
+    }
+    function query2(){
+        window.location.href = "people/people-query-2.html";
     }
 </script>
 
