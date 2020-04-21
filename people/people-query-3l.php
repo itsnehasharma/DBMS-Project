@@ -1,9 +1,71 @@
-<!DOCTYPE html>
+<?php
+
+$username = "shreyans";                   // Use your username
+$password = "Qwerty123";                  // and your password
+$database = "oracle.cise.ufl.edu/orcl";
+
+$c = oci_connect($username, $password, $database);
+if (!$c) {
+    $m = oci_error();
+    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
+}
+
+if (isset($_POST['starting-year']))
+{
+    $start = $_POST['starting-year'];
+}
+
+if (isset($_POST['ending-year']))
+{
+    $end = $_POST['ending-year'];
+}
+
+$query = "SELECT *
+  FROM (SELECT COUNT(ROWNUM) AS MALE, C.YEAR
+  FROM DOSPINA.person P, DOSPINA.collision C
+  WHERE P.CID = C.COLLISION_ID AND P.SEX <> '-1' AND p.position = 11 AND p.sex = 'M'
+  GROUP BY c.year
+  ORDER BY c.year) A NATURAL JOIN
+  (SELECT COUNT(ROWNUM) AS FEMALE, C.YEAR
+  FROM DOSPINA.person P, DOSPINA.collision C
+  WHERE P.CID = C.COLLISION_ID AND P.SEX <> '-1' AND p.position = 11 AND p.sex = 'F'
+  GROUP BY c.year
+  ORDER BY c.year) B
+  WHERE YEAR BETWEEN '$start' AND '$end'";
+
+$s = oci_parse($c, $query);
+if (!$s) {
+    $m = oci_error($c);
+    trigger_error('Could not parse statement: '. $m['message'], E_USER_ERROR);
+}
+$r = oci_execute($s);
+if (!$r) {
+    $m = oci_error($s);
+    trigger_error('Could not execute statement: '. $m['message'], E_USER_ERROR);
+}
+
+$chart_data = " ";
+while($row = oci_fetch_array($s, OCI_BOTH)){
+  //$data[] = $row;
+  //'" < These quotes + Double quotes below on year represent X-Axis > "'
+  $chart_data .= "{ year:'".$row["YEAR"]."', male:".$row["MALE"].", female:".$row["FEMALE"]."}, ";
+}
+//To remove last comma from $chart_data
+$chart_data = substr($chart_data, 0, -2);
+
+?>
+
 <html lang="en">
 
 <head>
 
     <head>
+    	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -30,6 +92,9 @@
         <div class="query-title">
             <h1>Show a trend of the number of male and female drivers involved in collisions occurring over a period of years</h1>
         </div>
+
+
+        <!-- does this need to be in a form wrapper? -->
 
         <div class="selector-box">
 
@@ -76,18 +141,17 @@
                 </select>
 
                 <br>
-                
                 <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-3b.php')">
                 <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-3l.php')">
-
             </form>
 
         </div>
 
 
-        <!--<div class="display-graph">
-            <h1>insert graph here</h1>
-        </div>-->
+        <div class="display-graph">
+            <h1>Male-Female Collision Comparision between years <?=$start?> and <?=$end?>.</h1>
+            <div id="chart"></div>
+        </div>
 
     </div>
 
@@ -106,11 +170,21 @@
         window.location.href = "../people.html";
     }
 
-    function submitForm(action){
+     function submitForm(action){
         document.getElementById('query-form').action = action;
         document.getElementById('query-form').submit();
     }
-    
+</script>
+<script>
+Morris.Line({
+ element : 'chart',
+ data:[<?php echo $chart_data; ?>],
+ xkey:'year',
+ ykeys:['male', 'female'],
+ labels:['Male', 'Female'],
+ hideHover:'auto',
+ stacked:false
+});
 </script>
 
 </html>
