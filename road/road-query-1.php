@@ -208,16 +208,19 @@ function done() {
 
 }
 </script>
+
 <script>
 Morris.Donut({
     element: 'chart1',
-    data: [ < ? php echo $chart_data1; ? > ]
-});
+    data: [ <?php echo $chart_data1; ?> ]
+    });
+
 </script>
+
 <script>
 Morris.Donut({
     element: 'chart2',
-    data: [ < ? php echo $chart_data2; ? > ]
+    data: [ <?php echo $chart_data2; ?> ]
 });
 </script>
 
