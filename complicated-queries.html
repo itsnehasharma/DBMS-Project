@@ -53,7 +53,7 @@
                     <br> NATURAL JOIN (SELECT COUNT(A.VEHICLE_ID) AS TYPE_5, A.YEAR FROM (SELECT v.vehicle_id, v.vehicle_type,
                     c.year FROM DOSPINA.VEHICLE V, DOSPINA.COLLISION C WHERE v.cid = c.collision_id AND v.vehicle_type
                     <>
-                    -1) A WHERE VEHICLE_TYPE = 5 GROUP BY A.YEAR, a.vehicle_type ORDER BY YEAR, VEHICLE_TYPE)
+                        -1) A WHERE VEHICLE_TYPE = 5 GROUP BY A.YEAR, a.vehicle_type ORDER BY YEAR, VEHICLE_TYPE)
                         <br>
                         <br> NATURAL JOIN (SELECT COUNT(A.VEHICLE_ID) AS TYPE_6, A.YEAR FROM (SELECT v.vehicle_id, v.vehicle_type,
                         c.year FROM DOSPINA.VEHICLE V, DOSPINA.COLLISION C WHERE v.cid = c.collision_id AND v.vehicle_type
@@ -143,8 +143,8 @@
                                                                                     a.vehicle_type ORDER BY YEAR, VEHICLE_TYPE)
                                                                                     WHERE YEAR BETWEEN 2000 AND 2005);
             </p>
+            
         </div>
-
         <div class="comp-query" id="2">
             <p>
                 SELECT year, A.BABIES, b.toddlers, c.kids, d.teenagers, e.young_adults as "YOUNG ADULTS", f.adults, g.senior_citizens AS
