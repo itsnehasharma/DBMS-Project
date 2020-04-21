@@ -118,7 +118,7 @@ $chart_data = substr($chart_data, 0, -2);
                 </select>
                 <br>
                 <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('severity-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('severity-query-1l.php')">
+                <!-- <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('severity-query-1l.php')"> -->
 
 
             </form>
