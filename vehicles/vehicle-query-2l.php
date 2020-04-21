@@ -233,7 +233,7 @@ $chart_data = substr($chart_data, 0, -2);
 
 
         <div class="query-title">
-            <h1>Display a Mosaic or Mekko chart showing the number of collisions for each vehicle type over a period of months
+            <h1>Display a chart showing the number of collisions for each vehicle type over a period of months
                 or years
             </h1>
         </div>
