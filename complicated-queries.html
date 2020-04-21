@@ -37,14 +37,14 @@
 
         <div class="comp-query" id="1">
 
-                <div class="link-to-query" onclick="query1()">
-                        <p>Display a Mosaic or Mekko chart showing the number of collisions for each vehicle type over a period of months
-                                or years
-                            </p>
-                    </div>
-                    <br>
+            <div class="link-to-query" onclick="query1()">
+                <p>Display a Mosaic or Mekko chart showing the number of collisions for each vehicle type over a period of months
+                    or years
+                </p>
+            </div>
+            <br>
 
-           
+
             <p>SELECT YEAR, ROUND(TYPE_1/TOTAL*100,2) AS "Percentage of Type1 Vehicles", ROUND(TYPE_5/TOTAL*100,2) AS "Percentage
                 of Type5 Vehicles", ROUND(TYPE_6/TOTAL*100,2) AS "Percentage of Type6 Vehicles", ROUND(TYPE_7/TOTAL*100,2)
                 AS "Percentage of Type7 Vehicles", ROUND(TYPE_8/TOTAL*100,2) AS "Percentage of Type8 Vehicles", ROUND(TYPE_9/TOTAL*100,2)
@@ -158,10 +158,10 @@
         </div>
         <div class="comp-query" id="2">
 
-                <div class="link-to-query" onclick="query2()">
-                        <p>Show the number of injuries in different age groups over a certain period of time</p>
-                    </div>
-                    <br>
+            <div class="link-to-query" onclick="query2()">
+                <p>Show the number of injuries in different age groups over a certain period of time</p>
+            </div>
+            <br>
 
             <p>
                 SELECT year, A.BABIES, b.toddlers, c.kids, d.teenagers, e.young_adults as "YOUNG ADULTS", f.adults, g.senior_citizens AS
@@ -186,11 +186,11 @@
         </div>
         <div class="comp-query" id="3">
 
-                <div class="link-to-query" onclick="query3()">
-                        <p>Find the number of collisions occurring on weekends and weekdays when astronomical twilight is evening or night
-                                over a range of year</p>
-                    </div>
-                    <br>
+            <div class="link-to-query" onclick="query3()">
+                <p>Find the number of collisions occurring on weekends and weekdays when astronomical twilight is evening or
+                    night over a range of year</p>
+            </div>
+            <br>
 
 
             <p>
@@ -212,11 +212,11 @@
 
         </div>
         <div class="comp-query" id="4">
-                <div class="link-to-query" onclick="query4()">
-                        <p>Show a graph depicting the number of accidents over a period of 12 months of a particular year 
-                                with respect to astronomical twilight</p>
-                    </div>
-                    <br>
+            <div class="link-to-query" onclick="query4()">
+                <p>Show a graph depicting the number of accidents over a period of 12 months of a particular year with respect
+                    to astronomical twilight</p>
+            </div>
+            <br>
             <p>
                 SELECT * FROM (SELECT A.MORNING AS "ACCIDENTS IN MORNING", B.DESCRIPTION AS "MONTH" FROM (SELECT COUNT(*) AS MORNING, MONTH
                 FROM DOSPINA.collision C WHERE c.hour BETWEEN 6 AND 11 AND YEAR = 2001 AND MONTH
@@ -247,10 +247,10 @@
 
         </div>
         <div class="comp-query" id="5">
-                <div class="link-to-query" onclick="query5()">
-                        <p>Calculate the ratio of fatalities to non-fatal injuries from accidents given a year and age group</p>
-                    </div>
-                    <br>
+            <div class="link-to-query" onclick="query5()">
+                <p>Calculate the ratio of fatalities to non-fatal injuries from accidents given a year and age group</p>
+            </div>
+            <br>
 
             <p>
                 SELECT YEAR, ROUND(FATALITIES*100/(FATALITIES+NF),2) AS FATALITIES, ROUND(NF*100/(FATALITIES+NF),2) AS "NON FATALITIES" FROM(SELECT
@@ -350,19 +350,19 @@
     }
 
 
-    function query2(){
+    function query2() {
         window.location.href = "people/people-query-2.html";
     }
 
-    function query3(){
+    function query3() {
         window.location.href = "safety/safety-query-2.html";
     }
 
-    function query4(){
+    function query4() {
         window.location.href = "time/time-query-1.html";
     }
 
-    function query5(){
+    function query5() {
         window.location.href = "severity/severity-query-1.html";
     }
 
