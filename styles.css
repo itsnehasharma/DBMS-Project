@@ -86,6 +86,15 @@ h2{
     z-index: -1;
 }
 
+.flag{
+    grid-column: 3/4;
+}
+
+.homepage-header > h1{
+    grid-column: 5/7;
+}
+
+
 .profile{
     /* z-index: 2; */
     grid-row: 1;
@@ -101,7 +110,7 @@ h2{
 .comp{
     /* z-index: 2; */
     grid-row: 1;
-    grid-column: 1/5;
+    grid-column: 1/4;
     /* margin: auto; */
     align-self: center;
     justify-self: flex-start;
@@ -110,6 +119,40 @@ h2{
     padding: 20px;
 }
 
+.light{
+    /* z-index: 2; */
+    grid-row: 1;
+    grid-column: 7/8;
+    /* margin: auto; */
+    align-self: center;
+    justify-self: flex-start;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+}
+
+.light > img{
+    object-fit: cover;
+    width: 70%;
+    height: 70%;
+}
+
+.flag{
+    grid-row: 1;
+    grid-column: 3/4;
+    /* margin: auto; */
+    align-self: center;
+    justify-self: flex-end;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+}
+
+.flag > img{
+    object-fit: cover;
+    width: 70%;
+    height: 70%;
+}
 
 
 .back{

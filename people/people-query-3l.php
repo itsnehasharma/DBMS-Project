@@ -98,9 +98,6 @@ $chart_data = substr($chart_data, 0, -2);
 
         <div class="selector-box">
 
-<<<<<<< HEAD
-            <form method="POST" action="people-query-3.php" id="query-form">
-=======
             <form method="POST" action="" id="query-forn">
 
                 <!--<label for="starting-month" class="selection-label">Starting Month: </label>
@@ -118,7 +115,6 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="11">November</option>
                     <option value="12">December</option>
                 </select>-->
->>>>>>> 7bb2a40f798ded1023c2325b33e180351bfbb745
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">

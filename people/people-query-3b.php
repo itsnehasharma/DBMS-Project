@@ -93,13 +93,6 @@ $chart_data = substr($chart_data, 0, -2);
             <h1>Show a trend of the number of male and female drivers involved in collisions occurring over a period of years</h1>
         </div>
 
-<<<<<<< HEAD
-        <div class="selector-box">
-
-            <form method="POST" action="people-query-3.php" id="query-form">
-
-              
-=======
 
         <!-- does this need to be in a form wrapper? -->
 
@@ -123,7 +116,6 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="12">December</option>
                 </select>-->
 
->>>>>>> 7bb2a40f798ded1023c2325b33e180351bfbb745
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
                     <option value="1999">1999</option>
