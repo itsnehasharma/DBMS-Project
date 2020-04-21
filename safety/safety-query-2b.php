@@ -113,7 +113,8 @@ $chart_data = substr($chart_data, 0, -2);
 
 
         <div class="query-title">
-            <h1>Find number of pedestrians hit for an astronomical twilight time with or without reflective clothing</h1>
+            <h1>Find the number of collisions occurring on weekends and weekdays when astronomical twilight is evening or night
+                over a range of year</h1>
         </div>
 
         <div class="selector-box">
