@@ -1,13 +1,4 @@
 <?php
-$username = "shreyans";                   // Use your username
-$password = "Qwerty123";                  // and your password
-$database = "oracle.cise.ufl.edu/orcl";
-
-$c = oci_connect($username, $password, $database);
-if (!$c) {
-    $m = oci_error();
-    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
-}
 
 if (isset($_POST['starting-year']))
 {
@@ -17,25 +8,31 @@ if (isset($_POST['ending-year']))
 {
     $end = $_POST['ending-year'];
 }
-if (isset($_POST['weather-cond']))
-{
-    $weather = $_POST['weather-cond'];
-}
-if (isset($_POST['road-surface']))
-{
-    $road = $_POST['road-surface'];
-}
-$query = "SELECT YEAR, ROUND(AVG(A.AGE),2) as AVG_AGE
-FROM (SELECT p.age, p.position, p.medical_treatment, c.weather_id, c.roadsurface_id, c.year
-FROM DOSPINA.PERSON P, DOSPINA.COLLISION C
-WHERE P.CID = C.COLLISION_ID AND AGE <> -1 AND p.position = 11
-AND p.medical_treatment BETWEEN 2 AND 3
-AND c.weather_id = '$weather'
-AND c.roadsurface_id = '$road') A
-WHERE YEAR BETWEEN '$start' AND '$end'
-GROUP BY A.YEAR
-ORDER BY YEAR";
 
+$username = "shreyans";                   // Use your username
+$password = "Qwerty123";                  // and your password
+$database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
+
+$query = "SELECT YEAR, F , NF 
+FROM 
+(SELECT COUNT(*) AS F, YEAR
+FROM DOSPINA.COLLISION
+WHERE SEVERITY = 1
+GROUP BY YEAR
+ORDER BY YEAR)
+NATURAL JOIN
+(SELECT COUNT(*) AS NF, YEAR
+FROM DOSPINA.COLLISION
+WHERE SEVERITY = 2
+GROUP BY YEAR
+ORDER BY YEAR)
+WHERE YEAR BETWEEN '$start' AND '$end'";
+
+$c = oci_connect($username, $password, $database);
+if (!$c) {
+    $m = oci_error();
+    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
+}
 $s = oci_parse($c, $query);
 if (!$s) {
     $m = oci_error($c);
@@ -51,27 +48,29 @@ $chart_data = " ";
 while($row = oci_fetch_array($s, OCI_BOTH)){
   //$data[] = $row;
   //'" < These quotes + Double quotes below on year represent X-Axis > "'
-  $chart_data .= "{ year:'".$row["YEAR"]."', aver:".$row["AVG_AGE"]."}, ";
+  $chart_data .= "{ year:'".$row["YEAR"]."', f:".$row["F"].", nf:".$row["NF"]."}, ";
 }
 //To remove last comma from $chart_data
 $chart_data = substr($chart_data, 0, -2);
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <head>
-    	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="..\styles.css">
-        <title>People Trends</title>
+        <title>Severity Trends</title>
     </head>
 </head>
 
@@ -84,46 +83,36 @@ $chart_data = substr($chart_data, 0, -2);
         </div>
 
         <div class="trends-page-header">
-            <h1>People Trends</h1>
+            <h1>Severity Trends</h1>
         </div>
 
-        <button onclick="done()" class="back-to-cat">People Queries</button>
+        <button onclick="done()" class="back-to-cat">Severity Queries</button>
 
 
         <div class="query-title">
-            <h1>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse weather
-                condition at certain road surface for a span of years</h1>
+            <h1>Show a trend of the number of accidents showing each collision severity for a range of months or years.</h1>
         </div>
 
 
         <div class="selector-box">
 
-            <form id="query-form" method="post" action="">
+            <form method="post" action="severity-query-2.php" id="query-form">
 
-                <label for="weather-cond" class="selection-label">Weather Condition:</label>
-                <select name="weather-cond" id="weather-cond" class="mySelect">
-                    <option value="1">Clear and Sunny</option>
-                    <option value="2">Overcast</option>
-                    <option value="3">Raining</option>
-                    <option value="4">Snowing</option>
-                    <option value="5">Freezing rain, sleet, hail</option>
-                    <option value="6">Visibility Limitation</option>
-                    <option value="7">Strong wind</option>
-                </select>
-
-                <label for="road-surface" class="selection-label">Road Surface:</label>
-                <select name="road-surface" id="road-surface" class="mySelect">
-                    <option value="1">Dry, normal</option>
-                    <option value="2">Wet</option>
-                    <option value="3">Snow (fresh, loose snow)</option>
-                    <option value="4">Slush, wet snow</option>
-                    <option value="5">Icy, Includes packed snow</option>
-                    <option value="6">Sand/gravel/dirt</option>
-                    <option value="7">Muddy</option>
-                    <option value="8">Oil</option>
-                    <option value="9">Flooded</option>
-                </select>
-
+                <!--<label for="starting-month" class="selection-label">Starting Month: </label>
+                <select name="starting-month" id="starting-month" class="mySelect">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>-->
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
@@ -145,6 +134,21 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="2014">2014</option>
                 </select>
 
+                <!--<label for="ending-month" class="selection-label">Ending Month: </label>
+                <select name="ending-month" id="ending-month" class="mySelect">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>-->
 
                 <label for="ending-year" class="selection-label">Ending Year:</label>
                 <select name="ending-year" id="ending-year" class="mySelect">
@@ -166,16 +170,18 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="2014">2014</option>
                 </select>
 
+
+
                 <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('severity-query-2b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('severity-query-2l.php')">
 
 
             </form>
         </div>
 
         <div class="display-graph">
-        	<h1>Average Age of drivers included in fatal or serious collisions between <?=$start?> and <?=$end?>.</h1>
+            <h1>Graph Caption Here</h1>
             <div id="chart"></div>
         </div>
 
@@ -193,7 +199,7 @@ $chart_data = substr($chart_data, 0, -2);
 
     function done() {
 
-        window.location.href = "../people.html";
+        window.location.href = "../severity.html";
 
     }
 
@@ -207,8 +213,8 @@ Morris.Line({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',
- ykeys:['aver'],
- labels:['Average Age'],
+ ykeys:['f', 'nf'],
+ labels:['Fatality', 'Non-Fatality'],
  hideHover:'auto',
  stacked:false
 });

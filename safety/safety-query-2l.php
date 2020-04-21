@@ -1,14 +1,4 @@
 <?php
-$username = "shreyans";                   // Use your username
-$password = "Qwerty123";                  // and your password
-$database = "oracle.cise.ufl.edu/orcl";
-
-$c = oci_connect($username, $password, $database);
-if (!$c) {
-    $m = oci_error();
-    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
-}
-
 if (isset($_POST['starting-year']))
 {
     $start = $_POST['starting-year'];
@@ -17,25 +7,57 @@ if (isset($_POST['ending-year']))
 {
     $end = $_POST['ending-year'];
 }
-if (isset($_POST['weather-cond']))
-{
-    $weather = $_POST['weather-cond'];
-}
-if (isset($_POST['road-surface']))
-{
-    $road = $_POST['road-surface'];
-}
-$query = "SELECT YEAR, ROUND(AVG(A.AGE),2) as AVG_AGE
-FROM (SELECT p.age, p.position, p.medical_treatment, c.weather_id, c.roadsurface_id, c.year
-FROM DOSPINA.PERSON P, DOSPINA.COLLISION C
-WHERE P.CID = C.COLLISION_ID AND AGE <> -1 AND p.position = 11
-AND p.medical_treatment BETWEEN 2 AND 3
-AND c.weather_id = '$weather'
-AND c.roadsurface_id = '$road') A
-WHERE YEAR BETWEEN '$start' AND '$end'
-GROUP BY A.YEAR
-ORDER BY YEAR";
 
+$username = "shreyans";                   // Use your username
+$password = "Qwerty123";                  // and your password
+$database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
+
+$query = "SELECT YEAR, WEEKDAY, WEEKEND, ROUND(WEEKDAY/4,0) AS AVG_WEEK, ROUND(WEEKEND/3,0) AS AVG_WEEK_END
+FROM
+(SELECT A.EVENING_WEEKEND + B.NIGHT_WEEKEND + C.NIGHT_WEEKEND AS WEEKEND, A.YEAR
+FROM 
+(SELECT COUNT(*) AS EVENING_WEEKEND, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.DAY BETWEEN 5 AND 7 AND c.hour BETWEEN 20 AND 23
+GROUP BY YEAR
+ORDER BY YEAR) A,
+(SELECT COUNT(*) AS NIGHT_WEEKEND, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.DAY BETWEEN 5 AND 7 AND c.hour BETWEEN 20 AND 23
+GROUP BY YEAR
+ORDER BY YEAR) B,
+(SELECT COUNT(*) AS NIGHT_WEEKEND, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.DAY BETWEEN 5 AND 7 AND c.hour BETWEEN 0 AND 5
+GROUP BY YEAR
+ORDER BY YEAR) C
+WHERE A.YEAR = B.YEAR AND A.YEAR = C.YEAR)
+NATURAL JOIN
+(SELECT A.EVENING_WEEKDAY + B.NIGHT_WEEKDAY + C.NIGHT_WEEKDAY AS WEEKDAY, A.YEAR
+FROM 
+(SELECT COUNT(*) AS EVENING_WEEKDAY, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.DAY BETWEEN 1 AND 4 AND c.hour BETWEEN 20 AND 23
+GROUP BY YEAR
+ORDER BY YEAR) A,
+(SELECT COUNT(*) AS NIGHT_WEEKDAY, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.DAY BETWEEN 1 AND 4 AND c.hour BETWEEN 20 AND 23
+GROUP BY YEAR
+ORDER BY YEAR) B,
+(SELECT COUNT(*) AS NIGHT_WEEKDAY, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.DAY BETWEEN 1 AND 4 AND c.hour BETWEEN 0 AND 5
+GROUP BY YEAR
+ORDER BY YEAR) C
+WHERE A.YEAR = B.YEAR AND A.YEAR = C.YEAR)
+WHERE YEAR BETWEEN '$start' AND '$end'";
+
+$c = oci_connect($username, $password, $database);
+if (!$c) {
+    $m = oci_error();
+    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
+}
 $s = oci_parse($c, $query);
 if (!$s) {
     $m = oci_error($c);
@@ -51,27 +73,27 @@ $chart_data = " ";
 while($row = oci_fetch_array($s, OCI_BOTH)){
   //$data[] = $row;
   //'" < These quotes + Double quotes below on year represent X-Axis > "'
-  $chart_data .= "{ year:'".$row["YEAR"]."', aver:".$row["AVG_AGE"]."}, ";
+  $chart_data .= "{ year:'".$row["YEAR"]."', weekday:".$row["WEEKDAY"].", weekend:".$row["WEEKEND"].", avg_week:".$row["AVG_WEEK"].", avg_week_end:".$row["AVG_WEEK_END"]."}, ";
 }
 //To remove last comma from $chart_data
 $chart_data = substr($chart_data, 0, -2);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <head>
-    	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="..\styles.css">
-        <title>People Trends</title>
+        <title>Safety Trends</title>
     </head>
 </head>
 
@@ -84,46 +106,19 @@ $chart_data = substr($chart_data, 0, -2);
         </div>
 
         <div class="trends-page-header">
-            <h1>People Trends</h1>
+            <h1>Safety Trends</h1>
         </div>
 
-        <button onclick="done()" class="back-to-cat">People Queries</button>
+        <button onclick="done()" class="back-to-cat">Safety Queries</button>
 
 
         <div class="query-title">
-            <h1>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse weather
-                condition at certain road surface for a span of years</h1>
+            <h1>Find number of pedestrians hit for an astronomical twilight time with or without reflective clothing</h1>
         </div>
-
 
         <div class="selector-box">
 
-            <form id="query-form" method="post" action="">
-
-                <label for="weather-cond" class="selection-label">Weather Condition:</label>
-                <select name="weather-cond" id="weather-cond" class="mySelect">
-                    <option value="1">Clear and Sunny</option>
-                    <option value="2">Overcast</option>
-                    <option value="3">Raining</option>
-                    <option value="4">Snowing</option>
-                    <option value="5">Freezing rain, sleet, hail</option>
-                    <option value="6">Visibility Limitation</option>
-                    <option value="7">Strong wind</option>
-                </select>
-
-                <label for="road-surface" class="selection-label">Road Surface:</label>
-                <select name="road-surface" id="road-surface" class="mySelect">
-                    <option value="1">Dry, normal</option>
-                    <option value="2">Wet</option>
-                    <option value="3">Snow (fresh, loose snow)</option>
-                    <option value="4">Slush, wet snow</option>
-                    <option value="5">Icy, Includes packed snow</option>
-                    <option value="6">Sand/gravel/dirt</option>
-                    <option value="7">Muddy</option>
-                    <option value="8">Oil</option>
-                    <option value="9">Flooded</option>
-                </select>
-
+            <form method="post" action="safety-query-2.php" id="query-form">
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
@@ -167,15 +162,15 @@ $chart_data = substr($chart_data, 0, -2);
                 </select>
 
                 <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('safety-query-2b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('safety-query-2l.php')">
 
 
             </form>
         </div>
-
-        <div class="display-graph">
-        	<h1>Average Age of drivers included in fatal or serious collisions between <?=$start?> and <?=$end?>.</h1>
+    
+         <div class="display-graph">
+            <h1>Collisions on weekends and weekdays during evening between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
         </div>
 
@@ -193,7 +188,7 @@ $chart_data = substr($chart_data, 0, -2);
 
     function done() {
 
-        window.location.href = "../people.html";
+        window.location.href = "../safety.html";
 
     }
 
@@ -207,8 +202,8 @@ Morris.Line({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',
- ykeys:['aver'],
- labels:['Average Age'],
+ ykeys:['weekday', 'weekend', 'avg_week', 'avg_week_end'],
+ labels:['Weekday', 'Weekend', 'Average on Weekdays', 'Average on Weekends'],
  hideHover:'auto',
  stacked:false
 });

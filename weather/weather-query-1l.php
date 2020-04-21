@@ -1,13 +1,4 @@
 <?php
-$username = "shreyans";                   // Use your username
-$password = "Qwerty123";                  // and your password
-$database = "oracle.cise.ufl.edu/orcl";
-
-$c = oci_connect($username, $password, $database);
-if (!$c) {
-    $m = oci_error();
-    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
-}
 
 if (isset($_POST['starting-year']))
 {
@@ -17,25 +8,68 @@ if (isset($_POST['ending-year']))
 {
     $end = $_POST['ending-year'];
 }
-if (isset($_POST['weather-cond']))
-{
-    $weather = $_POST['weather-cond'];
-}
-if (isset($_POST['road-surface']))
-{
-    $road = $_POST['road-surface'];
-}
-$query = "SELECT YEAR, ROUND(AVG(A.AGE),2) as AVG_AGE
-FROM (SELECT p.age, p.position, p.medical_treatment, c.weather_id, c.roadsurface_id, c.year
-FROM DOSPINA.PERSON P, DOSPINA.COLLISION C
-WHERE P.CID = C.COLLISION_ID AND AGE <> -1 AND p.position = 11
-AND p.medical_treatment BETWEEN 2 AND 3
-AND c.weather_id = '$weather'
-AND c.roadsurface_id = '$road') A
-WHERE YEAR BETWEEN '$start' AND '$end'
-GROUP BY A.YEAR
-ORDER BY YEAR";
 
+$username = "shreyans";                   // Use your username
+$password = "Qwerty123";                  // and your password
+$database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
+
+$query = "SELECT YEAR, W_1, W_2, W_3, W_4, W_5, W_6, W_7
+FROM (SELECT COUNT(A.COLLISION_ID) AS W_1, A.YEAR
+FROM (SELECT C.COLLISION_ID, C.WEATHER_ID, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.WEATHER_ID<>-1) A
+WHERE A.WEATHER_ID = 1
+GROUP BY A.WEATHER_ID, A.YEAR
+ORDER BY A.WEATHER_ID, A.YEAR) NATURAL JOIN
+(SELECT COUNT(A.COLLISION_ID) AS W_2, A.YEAR
+FROM (SELECT C.COLLISION_ID, C.WEATHER_ID, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.WEATHER_ID<>-1) A
+WHERE A.WEATHER_ID = 2
+GROUP BY A.WEATHER_ID, A.YEAR
+ORDER BY A.WEATHER_ID, A.YEAR) NATURAL JOIN
+(SELECT COUNT(A.COLLISION_ID) AS W_3, A.YEAR
+FROM (SELECT C.COLLISION_ID, C.WEATHER_ID, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.WEATHER_ID<>-1) A
+WHERE A.WEATHER_ID = 3
+GROUP BY A.WEATHER_ID, A.YEAR
+ORDER BY A.WEATHER_ID, A.YEAR) NATURAL JOIN
+(SELECT COUNT(A.COLLISION_ID) AS W_4, A.YEAR
+FROM (SELECT C.COLLISION_ID, C.WEATHER_ID, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.WEATHER_ID<>-1) A
+WHERE A.WEATHER_ID = 4
+GROUP BY A.WEATHER_ID, A.YEAR
+ORDER BY A.WEATHER_ID, A.YEAR) NATURAL JOIN
+(SELECT COUNT(A.COLLISION_ID) AS W_5, A.YEAR
+FROM (SELECT C.COLLISION_ID, C.WEATHER_ID, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.WEATHER_ID<>-1) A
+WHERE A.WEATHER_ID = 5
+GROUP BY A.WEATHER_ID, A.YEAR
+ORDER BY A.WEATHER_ID, A.YEAR) NATURAL JOIN
+(SELECT COUNT(A.COLLISION_ID) AS W_6, A.YEAR
+FROM (SELECT C.COLLISION_ID, C.WEATHER_ID, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.WEATHER_ID<>-1) A
+WHERE A.WEATHER_ID = 6
+GROUP BY A.WEATHER_ID, A.YEAR
+ORDER BY A.WEATHER_ID, A.YEAR) NATURAL JOIN
+(SELECT COUNT(A.COLLISION_ID) AS W_7, A.YEAR
+FROM (SELECT C.COLLISION_ID, C.WEATHER_ID, C.YEAR
+FROM DOSPINA.collision C
+WHERE C.WEATHER_ID<>-1) A
+WHERE A.WEATHER_ID = 7
+GROUP BY A.WEATHER_ID, A.YEAR
+ORDER BY A.WEATHER_ID, A.YEAR)
+WHERE YEAR BETWEEN '$start' AND '$end'";
+
+$c = oci_connect($username, $password, $database);
+if (!$c) {
+    $m = oci_error();
+    trigger_error('Could not connect to database: '. $m['message'], E_USER_ERROR);
+}
 $s = oci_parse($c, $query);
 if (!$s) {
     $m = oci_error($c);
@@ -51,27 +85,29 @@ $chart_data = " ";
 while($row = oci_fetch_array($s, OCI_BOTH)){
   //$data[] = $row;
   //'" < These quotes + Double quotes below on year represent X-Axis > "'
-  $chart_data .= "{ year:'".$row["YEAR"]."', aver:".$row["AVG_AGE"]."}, ";
+  $chart_data .= "{ year:'".$row["YEAR"]."', w_1:".$row["W_1"].", w_2:".$row["W_2"].", w_3:".$row["W_3"].", w_4:".$row["W_4"].", w_5:".$row["W_5"].", w_6:".$row["W_6"].", w_7:".$row["W_7"]."}, ";
 }
 //To remove last comma from $chart_data
 $chart_data = substr($chart_data, 0, -2);
 
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <head>
-    	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="..\styles.css">
-        <title>People Trends</title>
+        <title>Vehicle Trends</title>
     </head>
 </head>
 
@@ -84,46 +120,20 @@ $chart_data = substr($chart_data, 0, -2);
         </div>
 
         <div class="trends-page-header">
-            <h1>People Trends</h1>
+            <h1>Weather Trends</h1>
         </div>
 
-        <button onclick="done()" class="back-to-cat">People Queries</button>
+        <button onclick="done()" class="back-to-cat">Weather Queries</button>
 
 
         <div class="query-title">
-            <h1>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse weather
-                condition at certain road surface for a span of years</h1>
+            <h1>Show a trend of the number of accidents occurring per year over a variable time span of years with respect to the weather conditions </h1>
         </div>
 
 
-        <div class="selector-box">
+         <div class="selector-box">
 
-            <form id="query-form" method="post" action="">
-
-                <label for="weather-cond" class="selection-label">Weather Condition:</label>
-                <select name="weather-cond" id="weather-cond" class="mySelect">
-                    <option value="1">Clear and Sunny</option>
-                    <option value="2">Overcast</option>
-                    <option value="3">Raining</option>
-                    <option value="4">Snowing</option>
-                    <option value="5">Freezing rain, sleet, hail</option>
-                    <option value="6">Visibility Limitation</option>
-                    <option value="7">Strong wind</option>
-                </select>
-
-                <label for="road-surface" class="selection-label">Road Surface:</label>
-                <select name="road-surface" id="road-surface" class="mySelect">
-                    <option value="1">Dry, normal</option>
-                    <option value="2">Wet</option>
-                    <option value="3">Snow (fresh, loose snow)</option>
-                    <option value="4">Slush, wet snow</option>
-                    <option value="5">Icy, Includes packed snow</option>
-                    <option value="6">Sand/gravel/dirt</option>
-                    <option value="7">Muddy</option>
-                    <option value="8">Oil</option>
-                    <option value="9">Flooded</option>
-                </select>
-
+            <form method="post" action="weather-query-1.php" id="query-form">
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
                 <select name="starting-year" id="starting-year" class="mySelect">
@@ -167,17 +177,17 @@ $chart_data = substr($chart_data, 0, -2);
                 </select>
 
                 <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
+                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('weather-query-1b.php')">
+                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('weather-query-1l.php')">
 
 
             </form>
         </div>
-
         <div class="display-graph">
-        	<h1>Average Age of drivers included in fatal or serious collisions between <?=$start?> and <?=$end?>.</h1>
+            <h1>Collisions for different weather conditions between years <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
         </div>
+        
 
     </div>
 
@@ -193,7 +203,7 @@ $chart_data = substr($chart_data, 0, -2);
 
     function done() {
 
-        window.location.href = "../people.html";
+        window.location.href = "../weather.html";
 
     }
 
@@ -207,8 +217,8 @@ Morris.Line({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',
- ykeys:['aver'],
- labels:['Average Age'],
+ ykeys:['w_1','w_2','w_3','w_4','w_5','w_6','w_7'],
+ labels:['Clear And Sunny','Overcast','Raining','Snowing','Freezing rain, sleet, hail','Visibility Limitation','Strong Wind'],
  hideHover:'auto',
  stacked:false
 });
