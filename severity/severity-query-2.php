@@ -180,7 +180,7 @@ $chart_data = substr($chart_data, 0, -2);
         </div>
 
         <div class="display-graph">
-            <h1>Graph Caption Here</h1>
+            <h1>Accidents per Collision Severity from <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
         </div>
 
