@@ -399,7 +399,7 @@ h2{
 
 .display-full{
 
-    border: 1px solid #22208a;
+    /* border: 1px solid #22208a; */
     grid-column: 2/6;
 
 }
@@ -407,7 +407,7 @@ h2{
 .display-graph{
 
     grid-column:3/6;
-    border: 1px solid #22208a;
+    /* border: 1px solid #22208a; */
 }
 
 .graph{
@@ -446,7 +446,8 @@ h2{
 }
 
 .link-to-query > p{
-    font-size: 16px;
+    font-size: 20px;
+    /* font-weight: 300; */
 }
 
 .query > p{

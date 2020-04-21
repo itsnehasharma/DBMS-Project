@@ -95,7 +95,7 @@ $total = $row['TUPLE'];
 
 
         <div class="comp">
-            <button class="dropbtn" onclick="goToComp()">Complicated Queries</button>
+            <button class="dropbtn" onclick="goToComp()">Complex Queries</button>
         </div>
 
         <div class="light">
