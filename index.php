@@ -138,7 +138,7 @@ $total = $row['TUPLE'];
         </div>
 
         <div class="category-card count-tuples" onclick="showTupleCount()">
-            <h2>Tuple Count</h2>
+            <h2><?=$total?></h2>
         </div>
 
 
@@ -199,7 +199,7 @@ toggle between hiding and showing the dropdown content */
     }
 
     function showTupleCount(){
-        window.location.href = "index.php"
+      //  window.location.href = "index.php"
     }
 </script>
 
