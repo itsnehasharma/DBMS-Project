@@ -136,25 +136,6 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="2014">2014</option>
                 </select>
 
-<<<<<<< HEAD
-=======
-                <!--<label for="ending-month" class="selection-label">Ending Month: </label>
-                <select name="ending-month" id="ending-month" class="mySelect">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>-->
-
->>>>>>> 7bb2a40f798ded1023c2325b33e180351bfbb745
                 <label for="ending-year" class="selection-label">Ending Year:</label>
                 <select name="ending-year" id="ending-year" class="mySelect">
                     <option value="1999">1999</option>
@@ -203,16 +184,10 @@ $chart_data = substr($chart_data, 0, -2);
     function done() {
 
         window.location.href = "../people.html";
-<<<<<<< HEAD
-    }
-
-     function submitForm(action){
-=======
 
     }
 
     function submitForm(action){
->>>>>>> 7bb2a40f798ded1023c2325b33e180351bfbb745
         document.getElementById('query-form').action = action;
         document.getElementById('query-form').submit();
     }

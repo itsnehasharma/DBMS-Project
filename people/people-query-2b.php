@@ -107,60 +107,73 @@ $chart_data = substr($chart_data, 0, -2);
             <h1>Show the number of injuries in different age groups over a certain period of time</h1>
         </div>
 
-        <div class="selector-box">
-
-            <form id="query-form" method="POST" action="">
-
-                <label for="starting-year" class="selection-label">Starting Year: </label>
-                <select name="starting-year" id="starting-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+       <div class="nested-form">
 
 
-                <label for="ending-year" class="selection-label">Ending Year:</label>
-                <select name="ending-year" id="ending-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+<form id="query-form" method="POST" action="" class="form-left-right">
 
-                <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-2b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-2l.php')">
+    <div class="select-left">
+        <label for="starting-year" class="selection-label">Starting Year: </label>
+        <select name="starting-year" id="starting-year" class="mySelect">
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+        </select>
 
-            </form>
 
-        </div>
+    </div>
 
-        <div class="display-graph">
+    <div class="select-right">
+        <label for="ending-year" class="selection-label">Ending Year:</label>
+        <select name="ending-year" id="ending-year" class="mySelect">
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+        </select>
+
+
+    </div>
+
+
+
+    <div class="select-left">
+        <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-2b.php')">
+        <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-2l.php')">
+
+
+    </div>
+
+</form>
+
+</div>
+
+        <div class="display-full">
             <h1>Number of injuries in different age groups between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
         </div>
