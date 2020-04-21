@@ -86,14 +86,22 @@ $total = $row['TUPLE'];
 <body class="homepage">
     <div class="homepage-grid">
 
+        <div class="flag">
+                <img src="flag.png" alt="">        </div>
+           
         <div class="homepage-header">
-            <h1>Trend Categories</h1>
-        </div>
+            <h1>Canadian Car Accident Trends (1999-2014)</h1>
+        </div>    
+
 
         <div class="comp">
-
             <button class="dropbtn" onclick="goToComp()">Complicated Queries</button>
         </div>
+
+        <div class="light">
+            <img src="traffic light 2.png" alt="">
+        </div>
+
         <div class="profile">
             <div class="dropdown">
 
@@ -130,7 +138,7 @@ $total = $row['TUPLE'];
         </div>
 
         <div class="category-card count-tuples" onclick="showTupleCount()">
-            <h2><?=$total?></h2>
+            <h2>Tuple Count</h2>
         </div>
 
 
@@ -191,7 +199,7 @@ toggle between hiding and showing the dropdown content */
     }
 
     function showTupleCount(){
-        //window.location.href = "index.php"
+        window.location.href = "index.php"
     }
 </script>
 
