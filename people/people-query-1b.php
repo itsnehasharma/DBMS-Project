@@ -193,6 +193,7 @@ $chart_data = substr($chart_data, 0, -2);
 <h1>Average Age of drivers included in fatal or serious collisions between <?=$start?> and <?=$end?>.</h1>
 <div id="chart"></div>
 <h2>Year</h2>
+<div id="legend"></div>
 </div>
 
     </div>
