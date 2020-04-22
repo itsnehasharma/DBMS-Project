@@ -349,7 +349,7 @@ var abc = Morris.Line({
 });
 
 abc.options.labels.forEach(function(label, i) {
-    var legendItem = $('<span></span>').text(label).prepend('<br><span>&nbsp;</span>');
+    var legendItem = $('<span></span>').text(label).prepend('<span>&nbsp;</span>');
     legendItem.find('span')
       .css('backgroundColor', abc.options.lineColors[i])
       .css('width', '20px')

@@ -180,7 +180,7 @@ $chart_data = substr($chart_data, 0, -2);
             <h2>Year</h2>
              
         </div>
-        <div id="legend" class="bars-legend"></div>
+        <div id="legend" class="bars-legend display-full"></div>
 
     </div>
 
