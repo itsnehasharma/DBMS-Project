@@ -94,64 +94,77 @@ $chart_data = substr($chart_data, 0, -2);
             <h1>Find number of fatalities and injuries from people who did and did not wear seatbelts for a range of years</h1>
         </div>
 
-        <div class="selector-box">
+       <div class="nested-form">
 
-            <form method="post" action="safety-query-1.php" id="query-form">
+<form class="form-left-right" method="post" action="safety-query-1.php" id="query-form">
 
-                <label for="starting-year" class="selection-label">Starting Year: </label>
-                <select name="starting-year" id="starting-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+    <div class="select-left">
+
+        <label for="starting-year" class="selection-label">Starting Year: </label>
+        <select name="starting-year" id="starting-year" class="mySelect">
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+        </select>
+
+    </div>
+
+    <div class="select-right">
+        <label for="ending-year" class="selection-label">Ending Year:</label>
+        <select name="ending-year" id="ending-year" class="mySelect">
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+        </select>
 
 
-                <label for="ending-year" class="selection-label">Ending Year:</label>
-                <select name="ending-year" id="ending-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+    </div>
 
-                <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('safety-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('safety-query-1l.php')">
+    <div class="select-left">
+
+        <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('safety-query-1b.php')">
+        <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('safety-query-1l.php')">
+    </div>
 
 
-            </form>
-        </div>
+</form>
+</div>
     
-         <div class="display-graph">
+
+<div class="y-axis"><h2>y-axis</h2></div>
+         <div class="display-full">
             <h1>Fatalities and injuries for people with and without seatbelts between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
-            <div id="legend" class="bars-legend"></div>
+            <h2>x axis</h2>
+            
         </div>
+        <div id="legend" class="bars-legend display-full"></div>
 
     </div>
 
