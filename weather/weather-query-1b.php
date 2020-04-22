@@ -197,11 +197,14 @@ $chart_data = substr($chart_data, 0, -2);
 
 
 
+<div class="y-axis"><h2>y axis</h2></div>
         <div class="display-full">
             <h1>Collisions for different weather conditions between years <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
-            <div id="legend" class="bars-legend"></div>
+            <h2>x axis</h2>
+           
         </div>
+        <div id="legend" class="bars-legend display-full"></div>
         
 
     </div>
