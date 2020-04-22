@@ -163,11 +163,11 @@ $chart_data = substr($chart_data, 0, -2);
 
 </div>
 
-<div class="y-axis"><h2>y axis</h2></div>
+<div class="y-axis"><h2>Number of Accidents</h2></div>
         <div class="display-full">
             <h1>Accidents occuring at intersections and non-intersections between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
-            <h2>x axis</h2>
+            <h2>Year</h2>
            
         </div>
         <div id="legend" class="bars-legend display-full"></div>
