@@ -124,7 +124,7 @@ $chart_data = substr($chart_data, 0, -2);
             </form>
         </div>
 
-<div class="y-axis"><h2>Ratio of Fatalities to Non-Fatalities</h2></div>
+<div class="y-axis"><h2>Ratio of Fatalities to Non-Fatalities (%)</h2></div>
         <div class="display-full">
             <h1>Ratio of Fatalities to Non-Fatalities in the year <?=$year?>.</h1>
             <div id="chart"></div>
