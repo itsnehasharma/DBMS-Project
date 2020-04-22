@@ -81,6 +81,31 @@ $chart_data2 = substr($chart_data2, 0, -2);
         <title>Road Trends</title>
     </head>
 </head>
+<style type="text/css">
+    .donut-legend > span {
+  display: inline-block;
+  margin-right: 25px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.donut-legend > span:last-child {
+  margin-right: 0;
+}
+.donut-legend > span > i {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  margin-top: -3px;
+  vertical-align: middle;
+  border-radius: 1px;
+}
+#browsers_chart {
+  max-height: 280px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+</style>
 
 <body class="trends-page">
 
@@ -174,16 +199,18 @@ $chart_data2 = substr($chart_data2, 0, -2);
 
                     <h1><?=$year1?></h1>
                     <div id="chart1"></div>
-
+                    
                 </div>
 
                 <div class="select-right">
 
                     <h1><?=$year2?></h1>
                     <div id="chart2"></div>
+                    <!--<div id="legend1" class="donut-legend"></div>-->
                 </div>
 
             </div>
+            <div id="legend" class="donut-legend"></div>
 
 
             <br>
@@ -210,22 +237,32 @@ function done() {
 </script>
 
 <script>
-var color_array = ['#F2594A', '#F28C4B', '#7E6F6A', '#319deb', '#9c6db2', '#d24a67', '#89a958'];
-Morris.Donut({
+var color_array = ['#F2594A', '#F28C4B', '#7E6F6A', '#319deb', '#9c6db2', '#d24a67', '#89a958', '#9722d6'];
+var xyz = Morris.Donut({
     element: 'chart1',
     data: [ <?php echo $chart_data1; ?> ],
     colors: color_array
     });
+xyz.options.data.forEach(function(label, i){
+    var legendItem = $('<span></span>').text(label['label']).prepend(' <i>&nbsp;</i>');
+    legendItem.find('i').css('backgroundColor', xyz.options.colors[i]);
+    $('#legend').append(legendItem)
+  });
 
 </script>
 
 <script>
-var color_array = ['#F2594A', '#F28C4B', '#7E6F6A', '#319deb', '#9c6db2', '#d24a67', '#89a958'];
-Morris.Donut({
+var color_array = ['#F2594A', '#F28C4B', '#7E6F6A', '#319deb', '#9c6db2', '#d24a67', '#89a958', '#9722d6'];
+var abc = Morris.Donut({
     element: 'chart2',
     data: [ <?php echo $chart_data2; ?> ],
     colors: color_array
 });
+  abc.options.data.forEach(function(label, i){
+    var legendItem = $('<span></span>').text(label['label']).prepend('<br><i>&nbsp;</i>');
+    legendItem.find('i').css('backgroundColor', abc.options.colors[i]);
+    $('#legend1').append(legendItem)
+  });
 </script>
 
 </html>
