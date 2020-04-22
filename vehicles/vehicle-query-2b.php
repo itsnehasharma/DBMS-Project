@@ -304,11 +304,11 @@ $chart_data = substr($chart_data, 0, -2);
             </form>
         </div>
 
-<div class="y-axis"><h2>y-axis</h2></div>
+<div class="y-axis"><h2>Ratio of Collisions</h2></div>
         <div class="display-full">
             <h1>Ratio of collisions between various different types of vehicles between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
-            <h2>x axis</h2>
+            <h2>Year</h2>
             
         </div>
         <div id="legend" class="bars-legend display-full"></div>
