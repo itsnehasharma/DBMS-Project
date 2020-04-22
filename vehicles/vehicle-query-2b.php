@@ -307,6 +307,7 @@ $chart_data = substr($chart_data, 0, -2);
         <div class="display-full">
             <h1>Ratio of collisions between various different types of vehicles between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
+            <div id="legend" class="bars-legend"></div>
         </div>
 
     </div>
@@ -333,14 +334,27 @@ $chart_data = substr($chart_data, 0, -2);
     }
 </script>
 <script>
-Morris.Bar({
+var abc = Morris.Bar({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',
  ykeys:['type_1','type_5','type_6','type_7','type_8','type_9','type_10','type_11','type_14','type_16','type_17','type_18','type_19','type_20','type_21','type_22','type_23'],
  labels:['Light Duty Vehicle ','Panel/cargo van','Other trucks and vans','Unit trucks > 4536 kg','Road Tractor','School Bus','Smaller School Bus','Urban and Intercity Bus','Motorcycle and moped','Off road vehicles','Bicycle','Purpose-built motorhome','Farm Equipment','Construction equipment ','Fire engine','Snowmobile','Street car'],
  hideHover:'auto',
+ barColors: ["#03658C", "#7CA69E", "#F2594A", "#F28C4B", "#7E6F6A", "#36AFB2", "#9c6db2", "#d24a67", "#89a958", "#00739a", "#BDBDBD", "#62f229", "#3fbdfc", "#f74f76", "#5450b3", "#f2d230", "#8a0dff"],
  stacked:false
 });
+
+abc.options.labels.forEach(function(label, i) {
+    var legendItem = $('<span></span>').text(label).prepend('<br><span>&nbsp;</span>');
+    legendItem.find('span')
+      .css('backgroundColor', abc.options.barColors[i])
+      .css('width', '20px')
+      .css('display', 'inline-block')
+      .css('margin', '5px');
+    $('#legend').append(legendItem)
+  });
+
+
 </script>
 </html>
