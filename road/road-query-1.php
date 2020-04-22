@@ -210,17 +210,21 @@ function done() {
 </script>
 
 <script>
+var color_array = ['#F2594A', '#F28C4B', '#7E6F6A', '#319deb', '#9c6db2', '#d24a67', '#89a958'];
 Morris.Donut({
     element: 'chart1',
-    data: [ <?php echo $chart_data1; ?> ]
+    data: [ <?php echo $chart_data1; ?> ],
+    colors: color_array
     });
 
 </script>
 
 <script>
+var color_array = ['#F2594A', '#F28C4B', '#7E6F6A', '#319deb', '#9c6db2', '#d24a67', '#89a958'];
 Morris.Donut({
     element: 'chart2',
-    data: [ <?php echo $chart_data2; ?> ]
+    data: [ <?php echo $chart_data2; ?> ],
+    colors: color_array
 });
 </script>
 
