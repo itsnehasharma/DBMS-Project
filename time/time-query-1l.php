@@ -171,11 +171,17 @@ echo $chart_data;
             </form>
         </div>
 
+
+        <div class="y-axis"><h2>y-axis</h2></div>
+
         <div class="display-full">
             <h1>Number of collisions for different astronomical twilights over the year <?=$year?>.</h1>
             <div id="chart"></div>
-            <div id="legend" class="bars-legend"></div>
+            <h2>x axis</h2>
+             
+            
         </div>
+        <div id="legend" class="bars-legend display-full"></div>
 
     </div>
 
