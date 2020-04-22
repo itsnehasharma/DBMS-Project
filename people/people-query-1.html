@@ -33,87 +33,101 @@
         </div>
 
 
-        <div class="selector-box">
+        <div class="nested-form">
 
-            <form id="query-form" method="post" action="">
-
-                <label for="weather-cond" class="selection-label">Weather Condition:</label>
-                <select name="weather-cond" id="weather-cond" class="mySelect">
-                    <option value="1">Clear and Sunny</option>
-                    <option value="2">Overcast</option>
-                    <option value="3">Raining</option>
-                    <option value="4">Snowing</option>
-                    <option value="5">Freezing rain, sleet, hail</option>
-                    <option value="6">Visibility Limitation</option>
-                    <option value="7">Strong wind</option>
-                </select>
-
-                <label for="road-surface" class="selection-label">Road Surface:</label>
-                <select name="road-surface" id="road-surface" class="mySelect">
-                    <option value="1">Dry, normal</option>
-                    <option value="2">Wet</option>
-                    <option value="3">Snow (fresh, loose snow)</option>
-                    <option value="4">Slush, wet snow</option>
-                    <option value="5">Icy, Includes packed snow</option>
-                    <option value="6">Sand/gravel/dirt</option>
-                    <option value="7">Muddy</option>
-                    <option value="8">Oil</option>
-                    <option value="9">Flooded</option>
-                </select>
+            <form id="query-form" method="post" action="" class="form-left-right">
 
 
-                <label for="starting-year" class="selection-label">Starting Year: </label>
-                <select name="starting-year" id="starting-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+                <div class="select-left">
+
+                    <label for="weather-cond" class="selection-label">Weather Condition:</label>
+                    <select name="weather-cond" id="weather-cond" class="mySelect">
+                        <option value="1">Clear and Sunny</option>
+                        <option value="2">Overcast</option>
+                        <option value="3">Raining</option>
+                        <option value="4">Snowing</option>
+                        <option value="5">Freezing rain, sleet, hail</option>
+                        <option value="6">Visibility Limitation</option>
+                        <option value="7">Strong wind</option>
+                    </select>
+
+                    <label for="road-surface" class="selection-label">Road Surface:</label>
+                    <select name="road-surface" id="road-surface" class="mySelect">
+                        <option value="1">Dry, normal</option>
+                        <option value="2">Wet</option>
+                        <option value="3">Snow (fresh, loose snow)</option>
+                        <option value="4">Slush, wet snow</option>
+                        <option value="5">Icy, Includes packed snow</option>
+                        <option value="6">Sand/gravel/dirt</option>
+                        <option value="7">Muddy</option>
+                        <option value="8">Oil</option>
+                        <option value="9">Flooded</option>
+                    </select>
 
 
-                <label for="ending-year" class="selection-label">Ending Year:</label>
-                <select name="ending-year" id="ending-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+                </div>
 
-                <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
+
+                <div class="select-right">
+
+
+                    <label for="starting-year" class="selection-label">Starting Year: </label>
+                    <select name="starting-year" id="starting-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
+
+
+                    <label for="ending-year" class="selection-label">Ending Year:</label>
+                    <select name="ending-year" id="ending-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
+
+                </div>
+
+                <div class="select-left">
+
+                    <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
+                    <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
+
+                </div>
 
 
             </form>
         </div>
-
-        <!--<div class="display-graph">
-            <h1>insert graph here</h1>
-        </div>-->
+<!-- 
+        <div class="display-full">
+            
+        </div> -->
 
     </div>
 
@@ -131,7 +145,7 @@
         window.location.href = "../people.html";
     }
 
-    function submitForm(action){
+    function submitForm(action) {
         document.getElementById('query-form').action = action;
         document.getElementById('query-form').submit();
     }

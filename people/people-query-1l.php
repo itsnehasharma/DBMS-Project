@@ -96,9 +96,12 @@ $chart_data = substr($chart_data, 0, -2);
         </div>
 
 
-        <div class="selector-box">
+        <div class="nested-form">
 
-            <form id="query-form" method="post" action="">
+            <form id="query-form" method="post" action="" class="form-left-right">
+
+
+            <div class="select-left">
 
                 <label for="weather-cond" class="selection-label">Weather Condition:</label>
                 <select name="weather-cond" id="weather-cond" class="mySelect">
@@ -123,6 +126,12 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="8">Oil</option>
                     <option value="9">Flooded</option>
                 </select>
+
+
+            </div>
+                
+
+            <div class="select-right">
 
 
                 <label for="starting-year" class="selection-label">Starting Year: </label>
@@ -166,17 +175,24 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="2014">2014</option>
                 </select>
 
-                <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
+            </div>
+                
+            <div class="select-left">
+
+                 <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
                 <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
 
+            </div>
+               
 
             </form>
         </div>
 
-        <div class="display-graph">
+<div class="y-axis"><h2>y-axis</h2></div>
+        <div class="display-full">
         	<h1>Average Age of drivers included in fatal or serious collisions between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
+            <h2>x-axis</h2>
         </div>
 
     </div>
