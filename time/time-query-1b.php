@@ -174,6 +174,7 @@ $chart_data = substr($chart_data, 0, -2);
         <div class="display-full">
             <h1>Number of collisions for different astronomical twilights over the year <?=$year?>.</h1>
             <div id="chart"></div>
+            <div id="legend" class="bars-legend"></div>
         </div>
 
     </div>
@@ -203,7 +204,7 @@ $chart_data = substr($chart_data, 0, -2);
 </html>
 
 <script>
-Morris.Bar({
+var abc = Morris.Bar({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'month',
@@ -212,4 +213,14 @@ Morris.Bar({
  hideHover:'auto',
  stacked:false
 });
+
+ abc.options.labels.forEach(function(label, i) {
+    var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
+    legendItem.find('span')
+      .css('backgroundColor', abc.options.barColors[i])
+      .css('width', '20px')
+      .css('display', 'inline-block')
+      .css('margin', '5px');
+    $('#legend').append(legendItem)
+  });
 </script>

@@ -141,6 +141,7 @@ $chart_data = substr($chart_data, 0, -2);
         <div class="display-graph">
             <h1>New Vehicles that were part of a collision between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
+            <div id="legend" class="bars-legend"></div>
         </div>
     </div>
 
@@ -166,7 +167,7 @@ $chart_data = substr($chart_data, 0, -2);
     }
 </script>
 <script>
-Morris.Line({
+var abc = Morris.Line({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',
@@ -175,5 +176,17 @@ Morris.Line({
  hideHover:'auto',
  stacked:false
 });
+
+abc.options.labels.forEach(function(label, i) {
+    var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
+    legendItem.find('span')
+      .css('backgroundColor', abc.options.lineColors[i])
+      .css('width', '20px')
+      .css('display', 'inline-block')
+      .css('margin', '5px');
+    $('#legend').append(legendItem)
+  });
+
+
 </script>
 </html>

@@ -13,7 +13,7 @@ $username = "shreyans";                   // Use your username
 $password = "Qwerty123";                  // and your password
 $database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
 
-$query = "SELECT year, A.BABIES, b.toddlers, c.kids, d.teenagers, e.young_adults, f.adults, g.senior_citizens 
+$query = "SELECT year, A.BABIES, b.toddlers, c.kids, d.teenagers, e.young_adults, f.adults, g.senior_citizens
 FROM (SELECT COUNT(ROWNUM) AS BABIES, c.year
 FROM DOSPINA.PERSON P, DOSPINA.collision C
 WHERE P.CID = c.collision_id AND p.age BETWEEN 0 AND 1 AND p.medical_treatment BETWEEN 2 AND 3
@@ -177,7 +177,8 @@ $chart_data = substr($chart_data, 0, -2);
         <div class="display-full">
             <h1>Number of injuries in different age groups between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
-            <h2>x-axis</h2>
+            <h2>x axis</h2>
+             <div id="legend" class="bars-legend"></div>
         </div>
 
     </div>
@@ -205,7 +206,7 @@ $chart_data = substr($chart_data, 0, -2);
 
 </script>
 <script>
-Morris.Line({
+var abc = Morris.Line({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',
@@ -214,6 +215,16 @@ Morris.Line({
  hideHover:'auto',
  stacked:false
 });
+
+abc.options.labels.forEach(function(label, i) {
+    var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
+    legendItem.find('span')
+      .css('backgroundColor', abc.options.lineColors[i])
+      .css('width', '20px')
+      .css('display', 'inline-block')
+      .css('margin', '5px');
+    $('#legend').append(legendItem)
+  });
 </script>
 
 </html>

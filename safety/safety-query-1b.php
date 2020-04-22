@@ -17,14 +17,14 @@ SELECT YEAR, WITHOUT_SEATBELT , WITH_SEATBELT
 FROM((
 SELECT COUNT(*) AS WITHOUT_SEATBELT, C.Year
 FROM dospina.COLLISION C, dospina.PERSON P
-WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 1 AND (P.medical_treatment = 3 OR P.medical_treatment = 2)
+WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 1 AND (P.medical_treatment = 3)
 GROUP BY C.year
 ORDER BY Year ASC
 ) 
 NATURAL JOIN
 (SELECT COUNT(*) AS WITH_SEATBELT, C.Year
 FROM dospina.COLLISION C, dospina.PERSON P
-WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 2 AND (P.medical_treatment = 3 OR P.medical_treatment = 2)
+WHERE C.Collision_ID = P.cID AND P.Safety_Device_Used = 2 AND (P.medical_treatment = 3 )
 GROUP BY C.year
 ORDER BY Year ASC
 ))
@@ -150,6 +150,7 @@ $chart_data = substr($chart_data, 0, -2);
          <div class="display-graph">
             <h1>Fatalities and injuries for people with and without seatbelts between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
+            <div id="legend" class="bars-legend"></div>
         </div>
 
     </div>
@@ -176,7 +177,7 @@ $chart_data = substr($chart_data, 0, -2);
     }
 </script>
 <script>
-Morris.Bar({
+var abc = Morris.Bar({
  element : 'chart',
  data:[<?php echo $chart_data; ?>],
  xkey:'year',
@@ -185,5 +186,17 @@ Morris.Bar({
  hideHover:'auto',
  stacked:false
 });
+
+ abc.options.labels.forEach(function(label, i) {
+    var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
+    legendItem.find('span')
+      .css('backgroundColor', abc.options.barColors[i])
+      .css('width', '20px')
+      .css('display', 'inline-block')
+      .css('margin', '5px');
+    $('#legend').append(legendItem)
+  });
+
+
 </script>
 </html>
