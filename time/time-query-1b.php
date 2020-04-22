@@ -175,7 +175,7 @@ $chart_data = substr($chart_data, 0, -2);
         <div class="display-full">
             <h1>Number of collisions for different astronomical twilights over the year <?=$year?>.</h1>
             <div id="chart"></div>
-            <h2>Year</h2>
+            <h2>Month</h2>
             
         </div>
         <div id="legend" class="bars-legend display-full"></div>

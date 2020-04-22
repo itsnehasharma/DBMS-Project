@@ -13,14 +13,7 @@ $username = "shreyans";                   // Use your username
 $password = "Qwerty123";                  // and your password
 $database = "oracle.cise.ufl.edu/orcl";   // and the connect string to connect to your database
 
-$query = "SELECT YEAR, ROUND(TYPE_1/TOTAL*100,2) AS Type_1, ROUND(TYPE_5/TOTAL*100,2) AS Type_5, ROUND(TYPE_6/TOTAL*100,2) AS Type_6, 
-ROUND(TYPE_7/TOTAL*100,2) AS Type_7, ROUND(TYPE_8/TOTAL*100,2) AS Type_8, ROUND(TYPE_9/TOTAL*100,2) AS Type_9, 
-ROUND(TYPE_10/TOTAL*100,2) AS Type_10, ROUND(TYPE_11/TOTAL*100,2) AS Type_11, ROUND(TYPE_14/TOTAL*100,2) AS Type_14, 
-ROUND(TYPE_16/TOTAL*100,2) AS Type_16, ROUND(TYPE_17/TOTAL*100,2) AS Type_17, ROUND(TYPE_18/TOTAL*100,2) AS Type_18, 
-ROUND(TYPE_19/TOTAL*100,2) AS Type_19, ROUND(TYPE_20/TOTAL*100,2) AS Type_20, ROUND(TYPE_21/TOTAL*100,2) AS Type_21, 
-ROUND(TYPE_22/TOTAL*100,2) AS Type_22, ROUND(TYPE_23/TOTAL*100,2) AS Type_23
-FROM (SELECT TYPE_1, type_5, type_6, type_7, type_8, type_9, type_10, type_11, type_14, type_16, type_17, type_18, type_19, type_20, type_21, type_22, type_23, 
-TYPE_1 + TYPE_5 + TYPE_6 + TYPE_7 + TYPE_8 + TYPE_9 + TYPE_10 + TYPE_11 + TYPE_14 + TYPE_16 + TYPE_17 + TYPE_18 + TYPE_19 + TYPE_20 + TYPE_21 + TYPE_22 + TYPE_23 AS TOTAL, YEAR
+$query = "SELECT YEAR, TYPE_1, type_5, type_6, type_7, type_8, type_9, type_10, type_11, type_14, type_16, type_17, type_18, type_19, type_20, type_21, type_22, type_23
 FROM (SELECT COUNT(A.VEHICLE_ID) AS TYPE_1, A.YEAR
 FROM (SELECT v.vehicle_id, v.vehicle_type, c.year
 FROM DOSPINA.VEHICLE V, DOSPINA.COLLISION C
@@ -172,7 +165,7 @@ WHERE v.cid = c.collision_id AND v.vehicle_type <> -1) A
 WHERE VEHICLE_TYPE = 23
 GROUP BY A.YEAR, a.vehicle_type
 ORDER BY YEAR, VEHICLE_TYPE)
-WHERE YEAR BETWEEN '$start' AND '$end')";
+WHERE YEAR BETWEEN '$start' AND '$end'";
 
 $c = oci_connect($username, $password, $database);
 if (!$c) {
