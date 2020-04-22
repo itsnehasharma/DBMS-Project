@@ -178,8 +178,9 @@ $chart_data = substr($chart_data, 0, -2);
             <h1>Number of injuries in different age groups between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
             <h2>x axis</h2>
-             <div id="legend" class="bars-legend"></div>
+             
         </div>
+        <div id="legend" class="bars-legend"></div>
 
     </div>
 
