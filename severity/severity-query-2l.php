@@ -94,97 +94,82 @@ $chart_data = substr($chart_data, 0, -2);
         </div>
 
 
-        <div class="selector-box">
+        <div class="nested-form">
 
-            <form method="post" action="severity-query-2.php" id="query-form">
+<form class="form-left-right" method="post" action="severity-query-2.php" id="query-form">
 
-                <!--<label for="starting-month" class="selection-label">Starting Month: </label>
-                <select name="starting-month" id="starting-month" class="mySelect">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>-->
+    <div class="select-left">
 
-                <label for="starting-year" class="selection-label">Starting Year: </label>
-                <select name="starting-year" id="starting-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+            <label for="starting-year" class="selection-label">Starting Year: </label>
+            <select name="starting-year" id="starting-year" class="mySelect">
+                <option value="1999">1999</option>
+                <option value="2000">2000</option>
+                <option value="2001">2001</option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+                <option value="2005">2005</option>
+                <option value="2006">2006</option>
+                <option value="2007">2007</option>
+                <option value="2008">2008</option>
+                <option value="2009">2009</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+            </select>
+    </div>
 
-                <!--<label for="ending-month" class="selection-label">Ending Month: </label>
-                <select name="ending-month" id="ending-month" class="mySelect">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>-->
+    
+    <div class="select-right">
 
-                <label for="ending-year" class="selection-label">Ending Year:</label>
-                <select name="ending-year" id="ending-year" class="mySelect">
-                    <option value="1999">1999</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                </select>
+        
+    <label for="ending-year" class="selection-label">Ending Year:</label>
+    <select name="ending-year" id="ending-year" class="mySelect">
+        <option value="1999">1999</option>
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        <option value="2003">2003</option>
+        <option value="2004">2004</option>
+        <option value="2005">2005</option>
+        <option value="2006">2006</option>
+        <option value="2007">2007</option>
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+    </select>
 
 
 
-                <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('severity-query-2b.php')">
-                <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('severity-query-2l.php')">
+    </div>
 
 
-            </form>
-        </div>
 
-        <div class="display-graph">
+    <div class="select-left">
+            <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('severity-query-2b.php')">
+            <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('severity-query-2l.php')">
+
+
+    </div>
+ 
+
+</form>
+</div>
+
+<div class="y-axis"><h2>y axis</h2></div>
+        <div class="display-full">
             <h1>Accidents per Collision Severity between <?=$start?> and <?=$end?></h1>
             <div id="chart"></div>
-            <div id="legend" class="bars-legend"></div>
+            <h2>x axis</h2>
+           
         </div>
+        <div id="legend" class="bars-legend display-full"></div>
 
     </div>
 
