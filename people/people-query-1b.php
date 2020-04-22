@@ -63,10 +63,10 @@ $chart_data = substr($chart_data, 0, -2);
 <head>
 
     <head>
-    	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -91,110 +91,115 @@ $chart_data = substr($chart_data, 0, -2);
 
 
         <div class="query-title">
-            <h1>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse weather
+            <h1>Find the average age of car accident driver (resulting in fatality and/or serious injury) in an adverse
+                weather
                 condition at certain road surface for a span of years</h1>
         </div>
 
 
-         <div class="nested-form">
+        <div class="nested-form">
 
-<form id="query-form" method="post" action="" class="form-left-right">
-
-
-<div class="select-left">
-
-    <label for="weather-cond" class="selection-label">Weather Condition:</label>
-    <select name="weather-cond" id="weather-cond" class="mySelect">
-        <option value="1">Clear and Sunny</option>
-        <option value="2">Overcast</option>
-        <option value="3">Raining</option>
-        <option value="4">Snowing</option>
-        <option value="5">Freezing rain, sleet, hail</option>
-        <option value="6">Visibility Limitation</option>
-        <option value="7">Strong wind</option>
-    </select>
-
-    <label for="road-surface" class="selection-label">Road Surface:</label>
-    <select name="road-surface" id="road-surface" class="mySelect">
-        <option value="1">Dry, normal</option>
-        <option value="2">Wet</option>
-        <option value="3">Snow (fresh, loose snow)</option>
-        <option value="4">Slush, wet snow</option>
-        <option value="5">Icy, Includes packed snow</option>
-        <option value="6">Sand/gravel/dirt</option>
-        <option value="7">Muddy</option>
-        <option value="8">Oil</option>
-        <option value="9">Flooded</option>
-    </select>
+            <form id="query-form" method="post" action="" class="form-left-right">
 
 
-</div>
+                <div class="select-left">
+
+                    <label for="weather-cond" class="selection-label">Weather Condition:</label>
+                    <select name="weather-cond" id="weather-cond" class="mySelect">
+                        <option value="1">Clear and Sunny</option>
+                        <option value="2">Overcast</option>
+                        <option value="3">Raining</option>
+                        <option value="4">Snowing</option>
+                        <option value="5">Freezing rain, sleet, hail</option>
+                        <option value="6">Visibility Limitation</option>
+                        <option value="7">Strong wind</option>
+                    </select>
+
+                    <label for="road-surface" class="selection-label">Road Surface:</label>
+                    <select name="road-surface" id="road-surface" class="mySelect">
+                        <option value="1">Dry, normal</option>
+                        <option value="2">Wet</option>
+                        <option value="3">Snow (fresh, loose snow)</option>
+                        <option value="4">Slush, wet snow</option>
+                        <option value="5">Icy, Includes packed snow</option>
+                        <option value="6">Sand/gravel/dirt</option>
+                        <option value="7">Muddy</option>
+                        <option value="8">Oil</option>
+                        <option value="9">Flooded</option>
+                    </select>
 
 
-<div class="select-right">
+                </div>
 
 
-    <label for="starting-year" class="selection-label">Starting Year: </label>
-    <select name="starting-year" id="starting-year" class="mySelect">
-        <option value="1999">1999</option>
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
-        <option value="2003">2003</option>
-        <option value="2004">2004</option>
-        <option value="2005">2005</option>
-        <option value="2006">2006</option>
-        <option value="2007">2007</option>
-        <option value="2008">2008</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-    </select>
+                <div class="select-right">
 
 
-    <label for="ending-year" class="selection-label">Ending Year:</label>
-    <select name="ending-year" id="ending-year" class="mySelect">
-        <option value="1999">1999</option>
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
-        <option value="2003">2003</option>
-        <option value="2004">2004</option>
-        <option value="2005">2005</option>
-        <option value="2006">2006</option>
-        <option value="2007">2007</option>
-        <option value="2008">2008</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-    </select>
-
-</div>
-
-<div class="select-left">
-
-     <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('people-query-1b.php')">
-    <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('people-query-1l.php')">
-
-</div>
+                    <label for="starting-year" class="selection-label">Starting Year: </label>
+                    <select name="starting-year" id="starting-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
 
-</form>
-</div>
+                    <label for="ending-year" class="selection-label">Ending Year:</label>
+                    <select name="ending-year" id="ending-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
-<div class="y-axis"><h2>Average Age</h2></div>
-<div class="display-full">
-<h1>Average Age of drivers included in fatal or serious collisions between <?=$start?> and <?=$end?>.</h1>
-<div id="chart"></div>
-<h2>Year</h2>
-<div id="legend"></div>
-</div>
+                </div>
+
+                <div class="select-left">
+
+                    <input type="submit" class="enter-button" value="Bar Chart"
+                        onclick="submitForm('people-query-1b.php')">
+                    <input type="submit" class="enter-button" value="Line Chart"
+                        onclick="submitForm('people-query-1l.php')">
+
+                </div>
+
+
+            </form>
+        </div>
+
+        <div class="y-axis">
+            <h2>Average Age</h2>
+        </div>
+        <div class="display-full">
+            <h1>Average Age of drivers included in fatal or serious collisions between <?=$start?> and <?=$end?>.</h1>
+            <div id="chart"></div>
+            <h2>Year</h2>
+            <div id="legend"></div>
+        </div>
 
     </div>
 
@@ -204,40 +209,41 @@ $chart_data = substr($chart_data, 0, -2);
 </body>
 
 <script>
-    function goHome() {
-        window.location.href = "../index.html";
-    }
+function goHome() {
+    window.location.href = "../index.html";
+}
 
-    function done() {
+function done() {
 
-        window.location.href = "../people.html";
+    window.location.href = "../people.html";
 
-    }
+}
 
-    function submitForm(action){
-        document.getElementById('query-form').action = action;
-        document.getElementById('query-form').submit();
-    }
+function submitForm(action) {
+    document.getElementById('query-form').action = action;
+    document.getElementById('query-form').submit();
+}
 </script>
 <script>
 var abc = Morris.Bar({
- element : 'chart',
- data:[<?php echo $chart_data; ?>],
- xkey:'year',
- ykeys:['aver'],
- labels:['Average Age'],
- hideHover:'auto',
- stacked:false
+    element: 'chart',
+    data: [ <?php echo $chart_data; ?> ],
+    xkey: 'year',
+    ykeys: ['aver'],
+    labels: ['Average Age'],
+    hideHover: 'auto',
+    stacked: false
 });
 
 abc.options.labels.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
     legendItem.find('span')
-      .css('backgroundColor', abc.options.barColors[i])
-      .css('width', '20px')
-      .css('display', 'inline-block')
-      .css('margin', '5px');
+        .css('backgroundColor', abc.options.barColors[i])
+        .css('width', '20px')
+        .css('display', 'inline-block')
+        .css('margin', '5px');
     $('#legend').append(legendItem)
-  });
+});
 </script>
+
 </html>

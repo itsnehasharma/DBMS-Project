@@ -91,78 +91,83 @@ $chart_data = substr($chart_data, 0, -2);
 
 
         <div class="query-title">
-            <h1>Find number of fatalities and injuries from people who did and did not wear seatbelts for a range of years</h1>
+            <h1>Find number of fatalities and injuries from people who did and did not wear seatbelts for a range of
+                years</h1>
         </div>
 
-       <div class="nested-form">
+        <div class="nested-form">
 
-<form class="form-left-right" method="post" action="safety-query-1.php" id="query-form">
+            <form class="form-left-right" method="post" action="safety-query-1.php" id="query-form">
 
-    <div class="select-left">
+                <div class="select-left">
 
-        <label for="starting-year" class="selection-label">Starting Year: </label>
-        <select name="starting-year" id="starting-year" class="mySelect">
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-        </select>
+                    <label for="starting-year" class="selection-label">Starting Year: </label>
+                    <select name="starting-year" id="starting-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
-    </div>
+                </div>
 
-    <div class="select-right">
-        <label for="ending-year" class="selection-label">Ending Year:</label>
-        <select name="ending-year" id="ending-year" class="mySelect">
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-        </select>
-
-
-    </div>
-
-    <div class="select-left">
-
-        <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('safety-query-1b.php')">
-        <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('safety-query-1l.php')">
-    </div>
+                <div class="select-right">
+                    <label for="ending-year" class="selection-label">Ending Year:</label>
+                    <select name="ending-year" id="ending-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
 
-</form>
-</div>
-    
+                </div>
 
-<div class="y-axis"><h2>Total Fatalities and Injuries</h2></div>
-         <div class="display-full">
+                <div class="select-left">
+
+                    <input type="submit" class="enter-button" value="Bar Chart"
+                        onclick="submitForm('safety-query-1b.php')">
+                    <input type="submit" class="enter-button" value="Line Chart"
+                        onclick="submitForm('safety-query-1l.php')">
+                </div>
+
+
+            </form>
+        </div>
+
+
+        <div class="y-axis">
+            <h2>Total Fatalities and Injuries</h2>
+        </div>
+        <div class="display-full">
             <h1>Fatalities and injuries for people with and without seatbelts between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
             <h2>Year</h2>
-            
+
         </div>
         <div id="legend" class="bars-legend display-full"></div>
 
@@ -174,42 +179,41 @@ $chart_data = substr($chart_data, 0, -2);
 </body>
 
 <script>
-    function goHome() {
-        window.location.href = "../index.html";
-    }
+function goHome() {
+    window.location.href = "../index.html";
+}
 
-    function done() {
+function done() {
 
-        window.location.href = "../safety.html";
+    window.location.href = "../safety.html";
 
-    }
+}
 
-    function submitForm(action){
-        document.getElementById('query-form').action = action;
-        document.getElementById('query-form').submit();
-    }
+function submitForm(action) {
+    document.getElementById('query-form').action = action;
+    document.getElementById('query-form').submit();
+}
 </script>
 <script>
 var abc = Morris.Bar({
- element : 'chart',
- data:[<?php echo $chart_data; ?>],
- xkey:'year',
- ykeys:['without_seatbelt', 'with_seatbelt'],
- labels:['Without Seatbelt', 'With Seatbelt'],
- hideHover:'auto',
- stacked:false
+    element: 'chart',
+    data: [ <?php echo $chart_data; ?> ],
+    xkey: 'year',
+    ykeys: ['without_seatbelt', 'with_seatbelt'],
+    labels: ['Without Seatbelt', 'With Seatbelt'],
+    hideHover: 'auto',
+    stacked: false
 });
 
- abc.options.labels.forEach(function(label, i) {
+abc.options.labels.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
     legendItem.find('span')
-      .css('backgroundColor', abc.options.barColors[i])
-      .css('width', '20px')
-      .css('display', 'inline-block')
-      .css('margin', '5px');
+        .css('backgroundColor', abc.options.barColors[i])
+        .css('width', '20px')
+        .css('display', 'inline-block')
+        .css('margin', '5px');
     $('#legend').append(legendItem)
-  });
-
-
+});
 </script>
+
 </html>

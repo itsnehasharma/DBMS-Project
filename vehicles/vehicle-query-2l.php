@@ -244,72 +244,76 @@ $chart_data = substr($chart_data, 0, -2);
             <form method="post" action="vehicle-query-2.php" class="form-left-right" id="query-form">
 
                 <div class="select-left">
-                        <label for="starting-year" class="selection-label">Starting Year: </label>
-                        <select name="starting-year" id="starting-year" class="mySelect">
-                            <!--<option value="1999">1999</option>-->
-                            <option value="2000">2000</option>
-                            <option value="2001">2001</option>
-                            <option value="2002">2002</option>
-                            <option value="2003">2003</option>
-                            <option value="2004">2004</option>
-                            <option value="2005">2005</option>
-                            <option value="2006">2006</option>
-                            <option value="2007">2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                        </select>
+                    <label for="starting-year" class="selection-label">Starting Year: </label>
+                    <select name="starting-year" id="starting-year" class="mySelect">
+                        <!--<option value="1999">1999</option>-->
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
 
                 </div>
-                
+
 
 
                 <div class="select-right">
-                        <label for="ending-year" class="selection-label">Ending Year:</label>
-                        <select name="ending-year" id="ending-year" class="mySelect">
-                            <!--<option value="1999">1999</option>-->
-                            <option value="2000">2000</option>
-                            <option value="2001">2001</option>
-                            <option value="2002">2002</option>
-                            <option value="2003">2003</option>
-                            <option value="2004">2004</option>
-                            <option value="2005">2005</option>
-                            <option value="2006">2006</option>
-                            <option value="2007">2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                        </select>
-        
+                    <label for="ending-year" class="selection-label">Ending Year:</label>
+                    <select name="ending-year" id="ending-year" class="mySelect">
+                        <!--<option value="1999">1999</option>-->
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
+
 
 
                 </div>
 
                 <div class="select-left">
 
-                    <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('vehicle-query-2b.php')">
-                    <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('vehicle-query-2l.php')">
+                    <input type="submit" class="enter-button" value="Bar Chart"
+                        onclick="submitForm('vehicle-query-2b.php')">
+                    <input type="submit" class="enter-button" value="Line Chart"
+                        onclick="submitForm('vehicle-query-2l.php')">
                 </div>
 
 
             </form>
         </div>
 
-        <div class="y-axis"><h2>Ratio of Collisions</h2></div>
+        <div class="y-axis">
+            <h2>Ratio of Collisions</h2>
+        </div>
         <div class="display-full">
             <h1>Ratio of collisions between various different types of vehicles between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
             <h2>Year</h2>
-            
+
         </div>
         <div id="legend" class="bars-legend display-full"></div>
 
@@ -321,43 +325,50 @@ $chart_data = substr($chart_data, 0, -2);
 </body>
 
 <script>
-    function goHome() {
-        window.location.href = "../index.html";
-    }
+function goHome() {
+    window.location.href = "../index.html";
+}
 
-    function done() {
+function done() {
 
-        window.location.href = "../vehicles.html";
+    window.location.href = "../vehicles.html";
 
-    }
+}
 
-    function submitForm(action){
-        document.getElementById('query-form').action = action;
-        document.getElementById('query-form').submit();
-    }
+function submitForm(action) {
+    document.getElementById('query-form').action = action;
+    document.getElementById('query-form').submit();
+}
 </script>
 <script>
 var abc = Morris.Line({
- element : 'chart',
- data:[<?php echo $chart_data; ?>],
- xkey:'year',
- ykeys:['type_1','type_5','type_6','type_7','type_8','type_9','type_10','type_11','type_14','type_16','type_17','type_18','type_19','type_20','type_21','type_22','type_23'],
- labels:['Light Duty Vehicle ','Panel/cargo van','Other trucks and vans','Unit trucks > 4536 kg','Road Tractor','School Bus','Smaller School Bus','Urban and Intercity Bus','Motorcycle and moped','Off road vehicles','Bicycle','Purpose-built motorhome','Farm Equipment','Construction equipment ','Fire engine','Snowmobile','Street car'],
- hideHover:'auto',
- lineColors: ["#03658C", "#7CA69E", "#F2594A", "#F28C4B", "#7E6F6A", "#36AFB2", "#9c6db2", "#d24a67", "#89a958", "#00739a", "#BDBDBD", "#62f229", "#3fbdfc", "#f74f76", "#5450b3", "#f2d230", "#8a0dff"],
- stacked:false
+    element: 'chart',
+    data: [ <?php echo $chart_data; ?> ],
+    xkey: 'year',
+    ykeys: ['type_1', 'type_5', 'type_6', 'type_7', 'type_8', 'type_9', 'type_10', 'type_11', 'type_14',
+        'type_16', 'type_17', 'type_18', 'type_19', 'type_20', 'type_21', 'type_22', 'type_23'
+    ],
+    labels: ['Light Duty Vehicle ', 'Panel/cargo van', 'Other trucks and vans', 'Unit trucks > 4536 kg',
+        'Road Tractor', 'School Bus', 'Smaller School Bus', 'Urban and Intercity Bus',
+        'Motorcycle and moped', 'Off road vehicles', 'Bicycle', 'Purpose-built motorhome', 'Farm Equipment',
+        'Construction equipment ', 'Fire engine', 'Snowmobile', 'Street car'
+    ],
+    hideHover: 'auto',
+    lineColors: ["#03658C", "#7CA69E", "#F2594A", "#F28C4B", "#7E6F6A", "#36AFB2", "#9c6db2", "#d24a67",
+        "#89a958", "#00739a", "#BDBDBD", "#62f229", "#3fbdfc", "#f74f76", "#5450b3", "#f2d230", "#8a0dff"
+    ],
+    stacked: false
 });
 
 abc.options.labels.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label).prepend('<span>&nbsp;</span>');
     legendItem.find('span')
-      .css('backgroundColor', abc.options.lineColors[i])
-      .css('width', '20px')
-      .css('display', 'inline-block')
-      .css('margin', '5px');
+        .css('backgroundColor', abc.options.lineColors[i])
+        .css('width', '20px')
+        .css('display', 'inline-block')
+        .css('margin', '5px');
     $('#legend').append(legendItem)
-  });
-
-
+});
 </script>
+
 </html>

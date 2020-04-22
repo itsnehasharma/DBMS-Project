@@ -403,6 +403,10 @@ h2{
 
 }
 
+.display-full-large{
+    grid-column: 1/7;
+}
+
 .display-full > h2{
     text-align: center;
 }

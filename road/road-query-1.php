@@ -82,28 +82,31 @@ $chart_data2 = substr($chart_data2, 0, -2);
     </head>
 </head>
 <style type="text/css">
-    .donut-legend > span {
-  display: inline-block;
-  margin-right: 25px;
-  margin-bottom: 10px;
-  font-size: 13px;
+.donut-legend>span {
+    display: inline-block;
+    margin-right: 25px;
+    margin-bottom: 10px;
+    font-size: 13px;
 }
-.donut-legend > span:last-child {
-  margin-right: 0;
+
+.donut-legend>span:last-child {
+    margin-right: 0;
 }
-.donut-legend > span > i {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin-right: 7px;
-  margin-top: -3px;
-  vertical-align: middle;
-  border-radius: 1px;
+
+.donut-legend>span>i {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 7px;
+    margin-top: -3px;
+    vertical-align: middle;
+    border-radius: 1px;
 }
+
 #browsers_chart {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+    max-height: 280px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 </style>
 
@@ -199,7 +202,7 @@ $chart_data2 = substr($chart_data2, 0, -2);
 
                     <h1><?=$year1?></h1>
                     <div id="chart1"></div>
-                    
+
                 </div>
 
                 <div class="select-right">
@@ -242,13 +245,12 @@ var xyz = Morris.Donut({
     element: 'chart1',
     data: [ <?php echo $chart_data1; ?> ],
     colors: color_array
-    });
-xyz.options.data.forEach(function(label, i){
+});
+xyz.options.data.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label['label']).prepend(' <i>&nbsp;</i>');
     legendItem.find('i').css('backgroundColor', xyz.options.colors[i]);
     $('#legend').append(legendItem)
-  });
-
+});
 </script>
 
 <script>
@@ -258,11 +260,11 @@ var abc = Morris.Donut({
     data: [ <?php echo $chart_data2; ?> ],
     colors: color_array
 });
-  abc.options.data.forEach(function(label, i){
+abc.options.data.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label['label']).prepend('<br><i>&nbsp;</i>');
     legendItem.find('i').css('backgroundColor', abc.options.colors[i]);
     $('#legend1').append(legendItem)
-  });
+});
 </script>
 
 </html>

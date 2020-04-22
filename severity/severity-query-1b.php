@@ -117,20 +117,23 @@ $chart_data = substr($chart_data, 0, -2);
                     <option value="2014">2014</option>
                 </select>
                 <br>
-                <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('severity-query-1b.php')">
+                <input type="submit" class="enter-button" value="Bar Chart"
+                    onclick="submitForm('severity-query-1b.php')">
                 <!-- <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('severity-query-1l.php')"> -->
 
 
             </form>
         </div>
 
-<div class="y-axis"><h2>Ratio of Fatalities to Non-Fatalities (%)</h2></div>
+        <div class="y-axis">
+            <h2>Ratio of Fatalities to Non-Fatalities (%)</h2>
+        </div>
         <div class="display-full">
             <h1>Ratio of Fatalities to Non-Fatalities in the year <?=$year?>.</h1>
             <div id="chart"></div>
             <h2>Year</h2>
-             
-            
+
+
         </div>
         <div id="legend" class="bars-legend display-full"></div>
 
@@ -142,44 +145,42 @@ $chart_data = substr($chart_data, 0, -2);
 </body>
 
 <script>
-    function goHome() {
-        window.location.href = "../index.html";
-    }
+function goHome() {
+    window.location.href = "../index.html";
+}
 
-    function done() {
+function done() {
 
-        window.location.href = "../severity.html";
+    window.location.href = "../severity.html";
 
-    }
+}
 
-    function submitForm(action){
-        document.getElementById('query-form').action = action;
-        document.getElementById('query-form').submit();
-    }
+function submitForm(action) {
+    document.getElementById('query-form').action = action;
+    document.getElementById('query-form').submit();
+}
 </script>
 
 <script>
 var abc = Morris.Bar({
- element : 'chart',
- data:[<?php echo $chart_data; ?>],
- xkey:'year',
- ykeys:['f', 'nf'],
- labels:['Fatalities', 'Non-Fatalities'],
- hideHover:'auto',
- stacked:false
+    element: 'chart',
+    data: [ <?php echo $chart_data; ?> ],
+    xkey: 'year',
+    ykeys: ['f', 'nf'],
+    labels: ['Fatalities', 'Non-Fatalities'],
+    hideHover: 'auto',
+    stacked: false
 });
 
 abc.options.labels.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
     legendItem.find('span')
-      .css('backgroundColor', abc.options.barColors[i])
-      .css('width', '20px')
-      .css('display', 'inline-block')
-      .css('margin', '5px');
+        .css('backgroundColor', abc.options.barColors[i])
+        .css('width', '20px')
+        .css('display', 'inline-block')
+        .css('margin', '5px');
     $('#legend').append(legendItem)
-  });
-
-
+});
 </script>
 
 </html>

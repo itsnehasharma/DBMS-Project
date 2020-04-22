@@ -81,75 +81,80 @@ $chart_data = substr($chart_data, 0, -2);
 
 
         <div class="query-title">
-            <h1>Show a trend of the number of new vehicles that were a part of a collision in the same year as their manufacturing
+            <h1>Show a trend of the number of new vehicles that were a part of a collision in the same year as their
+                manufacturing
                 over a period of years.</h1>
         </div>
 
 
-       <div class="nested-form">
+        <div class="nested-form">
 
-<form class="form-left-right" method="post" action="vehicle-query-1.php" id="query-form">
-
-
-    <div class="select-left">
-        <label for="starting-year" class="selection-label">Starting Year: </label>
-        <select name="starting-year" id="starting-year" class="mySelect">
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-        </select>
+            <form class="form-left-right" method="post" action="vehicle-query-1.php" id="query-form">
 
 
-    </div>
+                <div class="select-left">
+                    <label for="starting-year" class="selection-label">Starting Year: </label>
+                    <select name="starting-year" id="starting-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
 
-    <div class="select-right">
-        <label for="ending-year" class="selection-label">Ending Year:</label>
-        <select name="ending-year" id="ending-year" class="mySelect">
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-        </select>
-
-    </div>
+                </div>
 
 
-    <div class="select-left">
+                <div class="select-right">
+                    <label for="ending-year" class="selection-label">Ending Year:</label>
+                    <select name="ending-year" id="ending-year" class="mySelect">
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                    </select>
 
-        <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('vehicle-query-1b.php')">
-        <input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('vehicle-query-1l.php')">
+                </div>
 
-    </div>
-</form>
-</div>
 
-<div class="y-axis"><h2>Number of Vehicles</h2></div>
+                <div class="select-left">
+
+                    <input type="submit" class="enter-button" value="Bar Chart"
+                        onclick="submitForm('vehicle-query-1b.php')">
+                    <input type="submit" class="enter-button" value="Line Chart"
+                        onclick="submitForm('vehicle-query-1l.php')">
+
+                </div>
+            </form>
+        </div>
+
+        <div class="y-axis">
+            <h2>Number of Vehicles</h2>
+        </div>
         <div class="display-full">
             <h1>New Vehicles that were part of a collision between <?=$start?> and <?=$end?>.</h1>
             <div id="chart"></div>
@@ -164,42 +169,41 @@ $chart_data = substr($chart_data, 0, -2);
 </body>
 
 <script>
-    function goHome() {
-        window.location.href = "../index.html";
-    }
+function goHome() {
+    window.location.href = "../index.html";
+}
 
-    function done() {
+function done() {
 
-        window.location.href = "../vehicles.html";
+    window.location.href = "../vehicles.html";
 
-    }
+}
 
-    function submitForm(action){
-        document.getElementById('query-form').action = action;
-        document.getElementById('query-form').submit();
-    }
+function submitForm(action) {
+    document.getElementById('query-form').action = action;
+    document.getElementById('query-form').submit();
+}
 </script>
 <script>
 var abc = Morris.Line({
- element : 'chart',
- data:[<?php echo $chart_data; ?>],
- xkey:'year',
- ykeys:['nv'],
- labels:['Number of New Vehicles'],
- hideHover:'auto',
- stacked:false
+    element: 'chart',
+    data: [ <?php echo $chart_data; ?> ],
+    xkey: 'year',
+    ykeys: ['nv'],
+    labels: ['Number of New Vehicles'],
+    hideHover: 'auto',
+    stacked: false
 });
 
 abc.options.labels.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
     legendItem.find('span')
-      .css('backgroundColor', abc.options.lineColors[i])
-      .css('width', '20px')
-      .css('display', 'inline-block')
-      .css('margin', '5px');
+        .css('backgroundColor', abc.options.lineColors[i])
+        .css('width', '20px')
+        .css('display', 'inline-block')
+        .css('margin', '5px');
     $('#legend').append(legendItem)
-  });
-
-
+});
 </script>
+
 </html>

@@ -106,7 +106,7 @@ echo $chart_data;
 <head>
 
     <head>
-    	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
@@ -134,14 +134,14 @@ echo $chart_data;
 
 
         <div class="query-title">
-            <h1>Show a graph depicting the number of accidents over a period of 12 months of a particular year 
+            <h1>Show a graph depicting the number of accidents over a period of 12 months of a particular year
                 with respect to astronomical twilight</h1>
         </div>
 
 
         <div class="selector-box">
 
-            <form method="post" action ="time-query-1.php" id="query-form">
+            <form method="post" action="time-query-1.php" id="query-form">
 
 
                 <label for="year" class="selection-label">Year: </label>
@@ -165,21 +165,21 @@ echo $chart_data;
                 </select>
                 <br>
                 <input type="submit" class="enter-button" value="Bar Chart" onclick="submitForm('time-query-1b.php')">
-                <!--<input type="submit" class="enter-button" value="Line Chart" onclick="submitForm('weather-query-1l.php')">-->
-
 
             </form>
         </div>
 
 
-        <div class="y-axis"><h2>y-axis</h2></div>
+        <div class="y-axis">
+            <h2>y-axis</h2>
+        </div>
 
         <div class="display-full">
             <h1>Number of collisions for different astronomical twilights over the year <?=$year?>.</h1>
             <div id="chart"></div>
             <h2>x axis</h2>
-             
-            
+
+
         </div>
         <div id="legend" class="bars-legend display-full"></div>
 
@@ -191,44 +191,42 @@ echo $chart_data;
 </body>
 
 <script>
-    function goHome() {
-        window.location.href = "../index.html";
-    }
+function goHome() {
+    window.location.href = "../index.html";
+}
 
-    function done() {
+function done() {
 
-        window.location.href = "../time.html";
+    window.location.href = "../time.html";
 
-    }
+}
 
-    function submitForm(action){
-        document.getElementById('query-form').action = action;
-        document.getElementById('query-form').submit();
-    }
+function submitForm(action) {
+    document.getElementById('query-form').action = action;
+    document.getElementById('query-form').submit();
+}
 </script>
 
 </html>
 
 <script>
 var abc = Morris.Line({
- element : 'chart',
- data:[<?php echo $chart_data; ?>],
- xkey:'month',
- ykeys:['am','aa','ae','an'],
- labels:['Morning','Afternoon','Evening','Night'],
- hideHover:'auto',
- stacked:false
+    element: 'chart',
+    data: [ <?php echo $chart_data; ?> ],
+    xkey: 'month',
+    ykeys: ['am', 'aa', 'ae', 'an'],
+    labels: ['Morning', 'Afternoon', 'Evening', 'Night'],
+    hideHover: 'auto',
+    stacked: false
 });
 
- abc.options.labels.forEach(function(label, i) {
+abc.options.labels.forEach(function(label, i) {
     var legendItem = $('<span></span>').text(label).prepend(' <span>&nbsp;</span>');
     legendItem.find('span')
-      .css('backgroundColor', abc.options.lineColors[i])
-      .css('width', '20px')
-      .css('display', 'inline-block')
-      .css('margin', '5px');
+        .css('backgroundColor', abc.options.lineColors[i])
+        .css('width', '20px')
+        .css('display', 'inline-block')
+        .css('margin', '5px');
     $('#legend').append(legendItem)
-  });
-
-
+});
 </script>
